@@ -12,6 +12,7 @@ import pixel.mod.impl.CPS;
 import pixel.mod.impl.Chat;
 import pixel.mod.impl.FPS;
 import pixel.mod.impl.KeyStrokes;
+import pixel.mod.impl.Nametags;
 import pixel.mod.impl.OldVisuals;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.togglesprintsneak.ToggleSprintSneak;
@@ -25,7 +26,8 @@ public class ModHandler {
 			new KeyStrokes(),
 			new ToggleSprintSneak(),
 			new OldVisuals(),
-			new Chat()
+			new Chat(),
+			new Nametags()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

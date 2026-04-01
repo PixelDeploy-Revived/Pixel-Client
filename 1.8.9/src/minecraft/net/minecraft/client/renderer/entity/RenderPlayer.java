@@ -17,6 +17,8 @@ import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.ResourceLocation;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Nametags;
 
 public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer>
 {
@@ -61,6 +63,14 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer>
 
             this.setModelVisibilities(entity);
             super.doRender(entity, x, d0, z, entityYaw, partialTicks);
+            
+            if (ModHandler.get(Nametags.class).isEnabled() && ModHandler.get(Nametags.class).castOptionValueIntoBoolean("showInThirdPerson") && entity instanceof EntityPlayerSP) {     
+            	if (entity.isSneaking()) {
+            		d0 = y - 0.125D;
+            	}
+            	
+                renderLivingLabel(entity, entity.getDisplayName().getFormattedText(), x, d0, z, 64);
+            }
         }
     }
 

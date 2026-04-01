@@ -23,6 +23,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.optifine.entity.model.IEntityRenderer;
 import net.optifine.shaders.Shaders;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Nametags;
+import pixel.util.ColorManager;
+
 import org.lwjgl.opengl.GL11;
 
 public abstract class Render<T extends Entity> implements IEntityRenderer
@@ -372,7 +376,7 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             GlStateManager.translate((float)x + 0.0F, (float)y + entityIn.height + 0.5F, (float)z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotate(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(renderManager.options.thirdPersonView == 2 ? -renderManager.playerViewX : renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
             GlStateManager.scale(-f1, -f1, f1);
             GlStateManager.disableLighting();
             GlStateManager.depthMask(false);
@@ -394,13 +398,28 @@ public abstract class Render<T extends Entity> implements IEntityRenderer
             worldrenderer.pos((double)(-j - 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
             worldrenderer.pos((double)(-j - 1), (double)(8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
             worldrenderer.pos((double)(j + 1), (double)(8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-            worldrenderer.pos((double)(j + 1), (double)(-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            
+            float red = 0.0F;
+            float green = 0.0F;
+            float blue = 0.0F;
+            float alpha = 0.25F;
+            
+            if (ModHandler.get(Nametags.class).isEnabled()) {
+            	ColorManager color = new ColorManager(ModHandler.get(Nametags.class).getOptionColor("backgroundColor").getARGB());
+            	
+            	red = color.getRed() / 255.0F;
+            	green = color.getGreen() / 255.0F;
+            	blue = color.getBlue() / 255.0F;
+            	alpha = color.getAlpha() / 255.0F;
+            }
+            
+            worldrenderer.pos((double)(j + 1), (double)(-1 + i), 0.0D).color(red, green, blue, alpha).endVertex();
             tessellator.draw();
             GlStateManager.enableTexture2D();
-            fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, 553648127);
+            fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, 553648127, ModHandler.get(Nametags.class).isEnabled() && ModHandler.get(Nametags.class).castOptionValueIntoBoolean("textShadow"));
             GlStateManager.enableDepth();
             GlStateManager.depthMask(true);
-            fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, -1);
+            fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, i, -1, ModHandler.get(Nametags.class).isEnabled() && ModHandler.get(Nametags.class).castOptionValueIntoBoolean("textShadow"));
             GlStateManager.enableLighting();
             GlStateManager.disableBlend();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
