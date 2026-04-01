@@ -11,6 +11,7 @@ import pixel.mod.impl.ArmorStatus;
 import pixel.mod.impl.CPS;
 import pixel.mod.impl.FPS;
 import pixel.mod.impl.KeyStrokes;
+import pixel.mod.impl.OldVisuals;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.togglesprintsneak.ToggleSprintSneak;
 
@@ -21,7 +22,8 @@ public class ModHandler {
 			new ArmorStatus(),
 			new PotionEffects(),
 			new KeyStrokes(),
-			new ToggleSprintSneak()
+			new ToggleSprintSneak(),
+			new OldVisuals()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

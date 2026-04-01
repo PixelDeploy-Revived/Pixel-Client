@@ -44,6 +44,8 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.world.border.WorldBorder;
 import net.optifine.CustomColors;
 import pixel.event.impl.RenderEvent;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.OldVisuals;
 
 public class GuiIngame extends Gui
 {
@@ -130,6 +132,10 @@ public class GuiIngame extends Gui
 
     public void renderGameOverlay(float partialTicks)
     {
+    	if (ModHandler.get(OldVisuals.class).isEnabled() && ModHandler.get(OldVisuals.class).castOptionValueIntoBoolean("blockHitting") && mc.thePlayer.getHeldItem() != null) {        	
+    		ModHandler.get(OldVisuals.class).attemptSwing();
+    	}
+    	
         ScaledResolution scaledresolution = new ScaledResolution(this.mc);
         int i = scaledresolution.getScaledWidth();
         int j = scaledresolution.getScaledHeight();

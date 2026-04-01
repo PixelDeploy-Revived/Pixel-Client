@@ -30,6 +30,9 @@ import net.minecraft.world.storage.MapData;
 import net.optifine.DynamicLights;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.OldVisuals;
+
 import org.lwjgl.opengl.GL11;
 
 public class ItemRenderer
@@ -306,6 +309,17 @@ public class ItemRenderer
      */
     private void transformFirstPersonItem(float equipProgress, float swingProgress)
     {
+		if (ModHandler.get(OldVisuals.class).isEnabled()) {
+			if (ModHandler.get(OldVisuals.class).castOptionValueIntoBoolean("bow") && mc.thePlayer.getItemInUse() != null && mc.thePlayer.getItemInUse().getItem() != null && Item.getIdFromItem(mc.thePlayer.getItemInUse().getItem()) == Item.getIdFromItem(Items.bow)) {
+				GlStateManager.translate(-0.01F, 0.05F, -0.06F);
+			}
+			
+			if (ModHandler.get(OldVisuals.class).castOptionValueIntoBoolean("fishingRod") && mc.thePlayer.getCurrentEquippedItem() != null && mc.thePlayer.getCurrentEquippedItem().getItem() != null && Item.getIdFromItem(mc.thePlayer.getCurrentEquippedItem().getItem()) == Item.getIdFromItem(Items.fishing_rod)) {
+				GlStateManager.translate(0.08F, -0.027F, -0.33F);
+				GlStateManager.scale(0.93F, 1.0F, 1.0F);
+			}
+		}
+		
         GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
         GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
         GlStateManager.rotate(45.0F, 0.0F, 1.0F, 0.0F);
@@ -387,26 +401,27 @@ public class ItemRenderer
                 else if (abstractclientplayer.getItemInUseCount() > 0)
                 {
                     EnumAction enumaction = this.itemToRender.getItemUseAction();
+                    float swingProgress = ModHandler.get(OldVisuals.class).isEnabled() && ModHandler.get(OldVisuals.class).castOptionValueIntoBoolean("blockHitting") ? f1 : 0.0F;
 
                     switch (enumaction)
                     {
                         case NONE:
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, swingProgress);
                             break;
 
                         case EAT:
                         case DRINK:
                             this.performDrinking(abstractclientplayer, partialTicks);
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, swingProgress);
                             break;
 
                         case BLOCK:
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, swingProgress);
                             this.doBlockTransformations();
                             break;
 
                         case BOW:
-                            this.transformFirstPersonItem(f, 0.0F);
+                            this.transformFirstPersonItem(f, swingProgress);
                             this.doBowTransformations(partialTicks, abstractclientplayer);
                     }
                 }
