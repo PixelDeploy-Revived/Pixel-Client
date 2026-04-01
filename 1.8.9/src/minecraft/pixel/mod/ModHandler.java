@@ -9,6 +9,7 @@ import java.util.Map;
 import pixel.gui.hud.HUD;
 import pixel.mod.impl.ArmorStatus;
 import pixel.mod.impl.CPS;
+import pixel.mod.impl.Chat;
 import pixel.mod.impl.FPS;
 import pixel.mod.impl.KeyStrokes;
 import pixel.mod.impl.OldVisuals;
@@ -23,7 +24,8 @@ public class ModHandler {
 			new PotionEffects(),
 			new KeyStrokes(),
 			new ToggleSprintSneak(),
-			new OldVisuals()
+			new OldVisuals(),
+			new Chat()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

@@ -9,6 +9,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Chat;
+import pixel.util.ColorManager;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -79,10 +83,15 @@ public class GuiNewChat extends Gui
                             {
                                 int i2 = 0;
                                 int j2 = -i1 * 9;
-                                drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
+                                int h0 = ModHandler.get(Chat.class).isEnabled() && ModHandler.get(Chat.class).castOptionValueIntoBoolean("chatHeightFix") ? -12 : 0;
+                                
+                                ColorManager backgroundColor = new ColorManager(ModHandler.get(Chat.class).getOptionColor("backgroundColor").getARGB());
+                                int rgba = ((int) ((backgroundColor.getAlpha() / 255.0F) * l1) << 24) | (backgroundColor.getRed() << 16) | (backgroundColor.getGreen() << 8) | backgroundColor.getBlue() >> 0;
+                                
+                                drawRect(i2, j2 - 9 + h0, i2 + l + 4, j2 + h0, ModHandler.get(Chat.class).isEnabled() ? rgba : l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
-                                this.mc.fontRendererObj.drawStringWithShadow(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));
+                                this.mc.fontRendererObj.drawString(s, (float)i2, (float)(j2 - 8) + h0, 16777215 + (l1 << 24), ModHandler.get(Chat.class).isEnabled() ? ModHandler.get(Chat.class).castOptionValueIntoBoolean("textShadow") : true);
                                 GlStateManager.disableAlpha();
                                 GlStateManager.disableBlend();
                             }
@@ -257,6 +266,10 @@ public class GuiNewChat extends Gui
             int k = mouseY / i - 27;
             j = MathHelper.floor_float((float)j / f);
             k = MathHelper.floor_float((float)k / f);
+            
+            if (ModHandler.get(Chat.class).isEnabled() && ModHandler.get(Chat.class).castOptionValueIntoBoolean("chatHeightFix")) {
+            	k -= 12;
+            }
 
             if (j >= 0 && k >= 0)
             {
