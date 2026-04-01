@@ -1,0 +1,10 @@
+bin/
+conf/
+docs/
+eclipse/
+jars/
+logs/
+runtime/
+temp/
+*.bat
+*.sh
