@@ -13,7 +13,7 @@ public class Chat extends Mod {
 		loadOptions(
 				new ModOption("chatHeightFix", true, new InGuiSettings("Chat Height Fix")),
 				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
-				new ModOptionColor("backgroundColor", ColorManager.BLACK_7F.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", false, true))
+				new ModOptionColor("backgroundColor", ColorManager.BLACK_7F.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false))
 				);
 	}
 }
