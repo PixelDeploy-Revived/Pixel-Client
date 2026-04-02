@@ -13,7 +13,6 @@ import pixel.mod.option.type.ModOptionColor;
 import pixel.mod.option.type.ModOptionEnum;
 import pixel.mod.option.type.ModOptionFloat;
 import pixel.mod.option.type.ModOptionInt;
-import pixel.util.FileManager;
 
 public abstract class Mod {
 	protected boolean enabled;
@@ -22,13 +21,13 @@ public abstract class Mod {
 	protected final Pixel pixelClient;
 	protected final Minecraft mc;
 	protected final FontRenderer font;
-	protected final FileManager file;
+	protected final ModFile file;
 	
 	public Mod(boolean enabled) {
 		pixelClient = Pixel.getInstance();
 		mc = Minecraft.getMinecraft();
 		font = mc.fontRendererObj;
-		file = FileManager.create(getClass().getSimpleName());
+		file = new ModFile(pixelClient, this);
 		
 		enable((boolean) file.safeGet("enabled", enabled));
 	}
@@ -49,7 +48,7 @@ public abstract class Mod {
 		return enabled;
 	}
 	
-	public FileManager getFile() {
+	public ModFile getFile() {
 		return file;
 	}
 	

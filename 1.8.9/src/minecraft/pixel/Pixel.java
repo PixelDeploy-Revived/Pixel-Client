@@ -30,6 +30,8 @@ public class Pixel {
 	
 	private HUD hud;
 	
+	private static FileManager modsFile;
+	
 	public static final Pixel getInstance() {
 		return instance;
 	}
@@ -77,11 +79,17 @@ public class Pixel {
 		return "Pixel Client (1.8.9-" + COMMIT + "/" + BRANCH + ")";
 	}
 	
+	public static final FileManager getModsFile() {
+		return modsFile;
+	}
+	
 	public final Discord getDiscord() {
 		return discord;
 	}
 	
 	public void init() {		
+		modsFile = FileManager.create("mods");
+		
 		discord.start();
 		
 		EventManager.register(this);

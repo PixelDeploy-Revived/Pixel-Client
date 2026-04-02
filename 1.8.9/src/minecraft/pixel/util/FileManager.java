@@ -35,7 +35,7 @@ public class FileManager {
 		return new FileManager(fileName);
 	}
 	
-	public void set(String key, Object value) {
+	public void put(String key, Object value) {
 		JSONObject jsonObject = readJsonFromFile();
 		
 		jsonObject.put(key, value);
@@ -49,15 +49,7 @@ public class FileManager {
 		return jsonObject.get(key);
 	}
 	
-	public Object safeGet(String key, Object defaultValue) {
-		if (!has(key)) {
-			set(key, defaultValue);
-		}
-		
-		return get(key);
-	}
-	
-	public boolean has(String key) {
+	public boolean containsKey(String key) {
 		JSONObject jsonObject = readJsonFromFile();
 		
 		return jsonObject.containsKey(key);
