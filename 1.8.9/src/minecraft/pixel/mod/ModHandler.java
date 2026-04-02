@@ -10,6 +10,7 @@ import pixel.gui.hud.HUD;
 import pixel.mod.impl.ArmorStatus;
 import pixel.mod.impl.CPS;
 import pixel.mod.impl.Chat;
+import pixel.mod.impl.Coordinates;
 import pixel.mod.impl.FPS;
 import pixel.mod.impl.KeyStrokes;
 import pixel.mod.impl.Nametags;
@@ -29,7 +30,8 @@ public class ModHandler {
 			new OldVisuals(),
 			new Chat(),
 			new Nametags(),
-			new Scoreboard()
+			new Scoreboard(),
+			new Coordinates()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
