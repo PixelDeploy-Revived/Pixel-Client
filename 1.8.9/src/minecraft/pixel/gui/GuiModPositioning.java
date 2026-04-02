@@ -42,6 +42,10 @@ public class GuiModPositioning extends GuiScreen {
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		Gui.drawHorizontalLine(0, width, height / 2.0F, 0.5F, ColorManager.WHITE.getARGB());
 		Gui.drawVerticalLine(width / 2.0F, 0, height, 0.5F, ColorManager.WHITE.getARGB());
+		Gui.drawVerticalLine(width / 3.0F, 0, height, 0.5F, ColorManager.WHITE.getARGB());
+		Gui.drawVerticalLine(width - (width / 3.0F), 0, height, 0.5F, ColorManager.WHITE.getARGB());
+		Gui.drawHorizontalLine(0, width, height / 3.0F, 0.5F, ColorManager.WHITE.getARGB());
+		Gui.drawHorizontalLine(0, width, height - (height / 3.0F), 0.5F, ColorManager.WHITE.getARGB());
 		
 		final float zBackup = zLevel;
 		
