@@ -8,6 +8,9 @@ public class ColorManager {
 	public static final ColorManager WHITE_66 = new ColorManager(102, 255, 255, 255);
 	public static final ColorManager BLACK_7F = new ColorManager(127, 0, 0, 0);
 	public static final ColorManager BLACK_40 = new ColorManager(64, 0, 0, 0);
+	public static final ColorManager BLACK_50 = new ColorManager(80, 0, 0, 0);
+	public static final ColorManager BLACK_60 = new ColorManager(96, 0, 0, 0);
+	public static final ColorManager DEFAULT_RED = new ColorManager(255, 85, 85);
 	
 	private int alpha;
 	private int red;
