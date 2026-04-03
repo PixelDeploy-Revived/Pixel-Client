@@ -83,18 +83,22 @@ public class GuiModColor extends GuiScreen {
 			break;
 		case 1:
 			color.setRed((int) sliderRed.getValue());
+			option.setARGB(color.getARGB());
 			option.saveIn(mod);
 			break;
 		case 2:
 			color.setGreen((int) sliderGreen.getValue());
+			option.setARGB(color.getARGB());
 			option.saveIn(mod);
 			break;
 		case 3:
 			color.setBlue((int) sliderBlue.getValue());
+			option.setARGB(color.getARGB());
 			option.saveIn(mod);
 			break;
 		case 4:
 			color.setAlpha((int) sliderAlpha.getValue());
+			option.setARGB(color.getARGB());
 			option.saveIn(mod);
 			break;
 		case 5:
