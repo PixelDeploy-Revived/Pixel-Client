@@ -24,6 +24,7 @@ public class GuiIngameMenu extends net.minecraft.client.gui.GuiIngameMenu {
 		
 		buttonList.add(new GuiButton(8, width / 2 - 100, height / 4 + 72 - 16, 200, 20, I18n.format("menu.multiplayer")));
 		buttonList.add(new GuiButton(9, 5, 5, 80, 20, "Mod List"));
+		buttonList.add(new GuiButton(10, 5, 5 + 20 + 4, 80, 20, "Cosmetics"));
 	}
 	
 	@Override
@@ -36,6 +37,9 @@ public class GuiIngameMenu extends net.minecraft.client.gui.GuiIngameMenu {
 			break;
 		case 9:
 			mc.displayGuiScreen(new GuiModList(this, 0));
+			break;
+		case 10:
+			mc.displayGuiScreen(new GuiCosmetics(this, 0));
 		}
 	}
 }

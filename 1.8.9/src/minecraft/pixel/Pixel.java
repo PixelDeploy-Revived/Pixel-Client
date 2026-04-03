@@ -31,6 +31,7 @@ public class Pixel {
 	private HUD hud;
 	
 	private static FileManager modsFile;
+	private static FileManager cosmeticsFile;
 	
 	public static final Pixel getInstance() {
 		return instance;
@@ -83,12 +84,17 @@ public class Pixel {
 		return modsFile;
 	}
 	
+	public static final FileManager getCosmeticsFile() {
+		return cosmeticsFile;
+	}
+	
 	public final Discord getDiscord() {
 		return discord;
 	}
 	
 	public void init() {		
 		modsFile = FileManager.create("mods");
+		cosmeticsFile = FileManager.create("cosmetics");
 		
 		discord.start();
 		
