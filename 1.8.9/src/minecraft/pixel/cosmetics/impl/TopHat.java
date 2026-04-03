@@ -50,9 +50,9 @@ public class TopHat extends Cosmetic {
 			
 			if (cosmetic.getOptionColor("color").isRainbowEnabled()) {
 				int speed = cosmetic.getOptionColor("color").getRainbowSpeed();
-	        	float hue = (System.currentTimeMillis() % speed) / (float) speed;
-
-	        	color = new ColorManager(Color.getHSBColor(hue, 1.0F, 1.0F).getRGB());
+				float hue = (System.currentTimeMillis() % speed) / (float) speed;
+				
+				color = new ColorManager(Color.getHSBColor(hue, 1.0F, 1.0F).getRGB());
 			}
 			
 			GlStateManager.color(color.getRed() / 255.0F, color.getGreen() / 255.0F, color.getBlue() / 255.0F);
