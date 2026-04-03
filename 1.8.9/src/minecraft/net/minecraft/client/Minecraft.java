@@ -188,7 +188,6 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
 import pixel.Pixel;
-import pixel.cosmetics.CosmeticHandler;
 import pixel.event.impl.TickEvent;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.impl.togglesprintsneak.MovementInput;
@@ -2436,7 +2435,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.playerController.setPlayerCapabilities(this.thePlayer);
             this.renderViewEntity = this.thePlayer;
             
-            CosmeticHandler.renderOn(renderManager.getSkinMap().get(thePlayer.getSkinType()));
+            Pixel.getInstance().renderCosmetics();
         }
         else
         {
