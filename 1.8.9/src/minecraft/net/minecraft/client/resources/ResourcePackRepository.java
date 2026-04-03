@@ -320,6 +320,14 @@ public class ResourcePackRepository
         {
             this.resourcePackFile = resourcePackFileIn;
         }
+        
+        public ResourceLocation getResourceLocation(TextureManager textureManagerIn) {
+            if (locationTexturePackIcon == null) {
+                locationTexturePackIcon = textureManagerIn.getDynamicTextureLocation("texturepackicon", new DynamicTexture(texturePackIcon));
+            }
+            
+            return locationTexturePackIcon;
+        }
 
         public void updateResourcePack() throws IOException
         {

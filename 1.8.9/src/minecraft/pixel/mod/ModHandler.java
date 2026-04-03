@@ -15,6 +15,7 @@ import pixel.mod.impl.FPS;
 import pixel.mod.impl.KeyStrokes;
 import pixel.mod.impl.Nametags;
 import pixel.mod.impl.OldVisuals;
+import pixel.mod.impl.PackDisplay;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.Scoreboard;
 import pixel.mod.impl.togglesprintsneak.ToggleSprintSneak;
@@ -31,7 +32,8 @@ public class ModHandler {
 			new Chat(),
 			new Nametags(),
 			new Scoreboard(),
-			new Coordinates()
+			new Coordinates(),
+			new PackDisplay()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
