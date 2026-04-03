@@ -113,64 +113,65 @@ public class Scoreboard extends ModDraggable {
 			scores = filteredScores;
 		}
 		
-		int i1 = (scores.size() + 1) * font.FONT_HEIGHT;
-		int j1 = i1 + 1;
+		int totalHeight = (scores.size() + 1) * font.FONT_HEIGHT;
+		int rectTop = totalHeight + 1;
 		
 		if (pos.getRelativeY() < 1.0D / 3.0D) {
-			j1 += pos.getAbsoluteY();
+			rectTop += pos.getAbsoluteY();
 		} else if (pos.getRelativeY() > 2.0D / 3.0D) {
-			j1 += pos.getAbsoluteY() + getHeight() - i1;
+			rectTop += pos.getAbsoluteY() + getHeight() - totalHeight;
 		} else {
-			j1 += pos.getAbsoluteY() + getHeight() / 2 - i1 / 2;
+			rectTop += pos.getAbsoluteY() + getHeight() / 2 - totalHeight / 2;
 		}
 		
-		int i = font.getStringWidth(scoreObjective.getDisplayName());
+		int maxWidth = font.getStringWidth(scoreObjective.getDisplayName());
 		
 		for (Score score : scores) {
 			ScorePlayerTeam scorePlayerTeam = scoreboard.getPlayersTeam(score.getPlayerName());
 			String lineText = ScorePlayerTeam.formatPlayerName(scorePlayerTeam, score.getPlayerName()) + (castOptionValueIntoBoolean("showNumbers") ? ": " + score.getScorePoints() : "");
 			
-			i = Math.max(i, font.getStringWidth(lineText));
+			maxWidth = Math.max(maxWidth, font.getStringWidth(lineText));
 		}
 		
-		int l1;
+		int rectLeft;
 		
 		if (pos.getRelativeX() < 1.0D / 3.0D) {
-			l1 = pos.getAbsoluteX() + 1;
+			rectLeft = pos.getAbsoluteX() + 1;
 		} else if (pos.getRelativeX() > 2.0D / 3.0D) {
-			l1 = pos.getAbsoluteX() + getWidth() - i + 1;
+			rectLeft = pos.getAbsoluteX() + getWidth() - maxWidth + 1;
 		} else {
-			l1 = pos.getAbsoluteX() + getWidth() / 2 - i / 2 + 1;
+			rectLeft = pos.getAbsoluteX() + getWidth() / 2 - maxWidth / 2 + 1;
 		}
 		
-		int j = 0;
+		int rectRight = rectLeft + maxWidth;
+		
+		int i = 0;
 		
 		for (Score score : scores) {
-			j++;
+			i++;
 			
-			int k = j1 - j * font.FONT_HEIGHT;
-			int l = l1 + i;
+			int top = rectTop - i * font.FONT_HEIGHT;
 			
-			Gui.drawRect(l1 - 2, k, l, k + font.FONT_HEIGHT, getOptionColor("backgroundColor").getARGB());
+			Gui.drawRect(rectLeft - 2, top, rectRight, top + font.FONT_HEIGHT, getOptionColor("backgroundColor").getARGB());
 			
 			ScorePlayerTeam scorePlayerTeam = scoreboard.getPlayersTeam(score.getPlayerName());
 			String lineText = ScorePlayerTeam.formatPlayerName(scorePlayerTeam, score.getPlayerName());
 			
-			drawText(lineText, l1, k, ColorManager.WHITE.getARGB(), castOptionValueIntoBoolean("textShadow"), false);
+			drawText(lineText, rectLeft, top, ColorManager.WHITE.getARGB(), castOptionValueIntoBoolean("textShadow"), false);
 			
 			if (castOptionValueIntoBoolean("showNumbers")) {
 				String number = String.valueOf(score.getScorePoints());
 				
-				drawText(number, l - font.getStringWidth(number), k, getOptionColor("numbersColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("numbersColor").isChromaEnabled());
+				drawText(number, rectRight - font.getStringWidth(number), top, getOptionColor("numbersColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("numbersColor").isChromaEnabled());
 			}
 			
-			if (j == scores.size()) {                
-				Gui.drawRect(l1 - 2 , k - font.FONT_HEIGHT - 1, l, k - 1, getOptionColor("headerBackgroundColor").getARGB());
-				Gui.drawRect(l1 - 2, k - 1, l, k, getOptionColor("backgroundColor").getARGB());
+			if (i == scores.size()) {                
+				Gui.drawRect(rectLeft - 2 , top - font.FONT_HEIGHT - 1, rectRight, top - 1, getOptionColor("headerBackgroundColor").getARGB());
+				Gui.drawRect(rectLeft - 2, top - 1, rectRight, top, getOptionColor("backgroundColor").getARGB());
 				
 				String title = scoreObjective.getDisplayName();
 				
-				drawText(title, l1 + i / 2 - font.getStringWidth(title) / 2, k - font.FONT_HEIGHT, ColorManager.WHITE.getARGB(), castOptionValueIntoBoolean("textShadow"), false);
+				drawText(title, rectLeft + maxWidth / 2 - font.getStringWidth(title) / 2, top - font.FONT_HEIGHT, ColorManager.WHITE.getARGB(), castOptionValueIntoBoolean("textShadow"), false);
 			}
 		}
 	}
