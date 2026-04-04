@@ -11,6 +11,7 @@ public class ColorManager {
 	public static final ColorManager BLACK_50 = new ColorManager(80, 0, 0, 0);
 	public static final ColorManager BLACK_60 = new ColorManager(96, 0, 0, 0);
 	public static final ColorManager DEFAULT_RED = new ColorManager(255, 85, 85);
+	public static final ColorManager GRAY = new ColorManager(128, 128, 128);
 	
 	private int alpha;
 	private int red;

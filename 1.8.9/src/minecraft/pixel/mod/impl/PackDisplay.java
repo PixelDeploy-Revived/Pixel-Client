@@ -1,6 +1,5 @@
 package pixel.mod.impl;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,7 +25,7 @@ public class PackDisplay extends ModDraggable {
 				new ModOptionColor("nameTextColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Name Text Color", false, true)),
 				new ModOption("nameTextShadow", true, new InGuiSettings("Name Text Shadow")),
 				new ModOption("showDescription", false, new InGuiSettings("Show Description")),
-				new ModOptionColor(new ModOptionParent("showDescription"), "descriptionTextColor", Color.GRAY.getRGB(), false, new ModOptionColor.InGuiSettings("Description Text Color", false, true)),
+				new ModOptionColor(new ModOptionParent("showDescription"), "descriptionTextColor", ColorManager.GRAY.getARGB(), false, new ModOptionColor.InGuiSettings("Description Text Color", false, true)),
 				new ModOption(new ModOptionParent("showDescription"), "descriptionTextShadow", true, new InGuiSettings("Description Text Shadow")),
 				new ModOptionColor("backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
 				new ModOption("showIcon", true, new InGuiSettings("Show Icon")),

@@ -11,6 +11,7 @@ import pixel.mod.impl.ArmorStatus;
 import pixel.mod.impl.CPS;
 import pixel.mod.impl.Chat;
 import pixel.mod.impl.Coordinates;
+import pixel.mod.impl.Direction;
 import pixel.mod.impl.FPS;
 import pixel.mod.impl.KeyStrokes;
 import pixel.mod.impl.Nametags;
@@ -33,7 +34,8 @@ public class ModHandler {
 			new Nametags(),
 			new Scoreboard(),
 			new Coordinates(),
-			new PackDisplay()
+			new PackDisplay(),
+			new Direction()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

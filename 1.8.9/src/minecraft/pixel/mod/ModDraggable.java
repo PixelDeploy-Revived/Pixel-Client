@@ -1,6 +1,7 @@
 package pixel.mod;
 
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -125,5 +126,16 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		Gui.drawRect(rectLeft + thickness, y + height, rectRight - thickness, y + height - thickness, color);
 		Gui.drawRect(rectLeft + thickness, y, rectLeft, y + height, color);
 		Gui.drawRect(rectRight, y, rectRight - thickness, y + height, color);
+	}
+	
+	public void drawScaledText(double scale, String text, float x, float y, int color, boolean textShadow, boolean chroma) {
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(x, y, 0.0F);
+		GlStateManager.scale(scale, scale, 1.0D);
+		GlStateManager.translate(-x, -y, 0.0F);
+		
+		drawText(text, x, y, color, textShadow, chroma);
+		
+		GlStateManager.popMatrix();
 	}
 }
