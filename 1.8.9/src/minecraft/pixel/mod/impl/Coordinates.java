@@ -76,7 +76,7 @@ public class Coordinates extends ModDraggable {
 		
 		if (castOptionValueIntoBoolean("drawBorder")) {
 			drawBorder(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"));
-    	}
+		}
 		
 		int i = 11;
 		
@@ -128,73 +128,73 @@ public class Coordinates extends ModDraggable {
 	}
 	
 	private int getDirectionFacing() {
-        int yaw = (int) mc.getRenderViewEntity().rotationYaw;
-        
-        yaw += 360;
-        yaw += 22;
-        yaw %= 360;
-        
-        return yaw / 45;
-    }
+		int yaw = (int) mc.getRenderViewEntity().rotationYaw;
+		
+		yaw += 360;
+		yaw += 22;
+		yaw %= 360;
+		
+		return yaw / 45;
+	}
 	
 	private String getFacingTowardsX() {
-        switch (getDirectionFacing()) {
-	        case 1:
-	            return "-";
-	        case 2:
-	            return "-";
-	        case 3:
-	        	return "-";
-	        case 5:
-	        	return "+";
-	        case 6:
-	        	return "+";
-	        case 7:
-	        	return "+";
-	        default:
-	        	return "";
-        }
+		switch (getDirectionFacing()) {
+		case 1:
+			return "-";
+		case 2:
+			return "-";
+		case 3:
+			return "-";
+		case 5:
+			return "+";
+		case 6:
+			return "+";
+		case 7:
+			return "+";
+		default:
+			return "";
+		}
 	}
 
 	private String getFacing() {
-        switch (getDirectionFacing()) {
-            case 0:
-                return "S";
-            case 1:
-                return "SW";
-            case 2:
-                return "W";
-            case 3:
-            	return "NW";
-            case 4:
-            	return "N";
-            case 5:
-            	return "NE";
-            case 6:
-            	return "E";
-            case 7:
-            	return "SE";
-            default:
-            	return "";
-        }
+		switch (getDirectionFacing()) {
+		case 0:
+			return "S";
+		case 1:
+			return "SW";
+		case 2:
+			return "W";
+		case 3:
+			return "NW";
+		case 4:
+			return "N";
+		case 5:
+			return "NE";
+		case 6:
+			return "E";
+		case 7:
+			return "SE";
+		default:
+			return "";
+		}
 	}
 	
 	private String getFacingTowardsZ() {
 		switch (getDirectionFacing()) {
-	        case 0:
-	            return "+";
-	        case 1:
-	            return "+";
-	        case 3:
-	        	return "-";
-	        case 4:
-	        	return "-";
-	        case 5:
-	        	return "-";
-	        case 7:
-	        	return "+";
-	        default:
-	        	return "";
-	    }
+		case 0:
+			return "+";
+		case 1:
+			return "+";
+		case 3:
+			return "-";
+		case 4:
+			return "-";
+		case 5:
+			return "-";
+		case 7:
+			return "+";
+		default:
+			return "";
+		}
 	}
 }
