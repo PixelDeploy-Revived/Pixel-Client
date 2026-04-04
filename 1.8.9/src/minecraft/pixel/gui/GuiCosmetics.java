@@ -6,9 +6,9 @@ import java.util.List;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-import pixel.cosmetics.Cosmetic;
-import pixel.cosmetics.CosmeticBase;
-import pixel.cosmetics.CosmeticHandler;
+import pixel.cosmetic.Cosmetic;
+import pixel.cosmetic.CosmeticBase;
+import pixel.cosmetic.CosmeticHandler;
 import pixel.util.ColorManager;
 
 public class GuiCosmetics extends GuiScreen {

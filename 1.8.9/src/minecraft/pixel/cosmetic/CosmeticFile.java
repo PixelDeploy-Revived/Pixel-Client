@@ -1,4 +1,4 @@
-package pixel.cosmetics;
+package pixel.cosmetic;
 
 import pixel.Pixel;
 import pixel.util.FileManager;

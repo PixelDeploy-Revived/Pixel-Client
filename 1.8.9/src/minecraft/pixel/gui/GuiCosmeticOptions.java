@@ -7,10 +7,10 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.resources.I18n;
 import pixel.Pixel;
-import pixel.cosmetics.Cosmetic;
-import pixel.cosmetics.option.CosmeticOption;
-import pixel.cosmetics.option.type.CosmeticOptionColor;
-import pixel.cosmetics.option.type.CosmeticOptionScale;
+import pixel.cosmetic.Cosmetic;
+import pixel.cosmetic.option.CosmeticOption;
+import pixel.cosmetic.option.type.CosmeticOptionColor;
+import pixel.cosmetic.option.type.CosmeticOptionScale;
 import pixel.util.ColorManager;
 
 public class GuiCosmeticOptions extends GuiScreen {

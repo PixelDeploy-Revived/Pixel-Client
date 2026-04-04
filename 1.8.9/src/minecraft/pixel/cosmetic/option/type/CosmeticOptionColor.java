@@ -1,8 +1,8 @@
-package pixel.cosmetics.option.type;
+package pixel.cosmetic.option.type;
 
-import pixel.cosmetics.Cosmetic;
-import pixel.cosmetics.option.CosmeticOption;
-import pixel.cosmetics.option.CosmeticOption.InGuiSettings;
+import pixel.cosmetic.Cosmetic;
+import pixel.cosmetic.option.CosmeticOption;
+import pixel.cosmetic.option.CosmeticOption.InGuiSettings;
 
 public class CosmeticOptionColor extends CosmeticOption {
 	private int argb;

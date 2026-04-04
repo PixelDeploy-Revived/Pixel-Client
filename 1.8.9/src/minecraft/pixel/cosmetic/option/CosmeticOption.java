@@ -1,6 +1,6 @@
-package pixel.cosmetics.option;
+package pixel.cosmetic.option;
 
-import pixel.cosmetics.Cosmetic;
+import pixel.cosmetic.Cosmetic;
 
 public class CosmeticOption {
 	public static class InGuiSettings {

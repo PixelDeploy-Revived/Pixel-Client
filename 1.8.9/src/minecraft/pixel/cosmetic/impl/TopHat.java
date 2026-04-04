@@ -1,4 +1,4 @@
-package pixel.cosmetics.impl;
+package pixel.cosmetic.impl;
 
 import java.awt.Color;
 
@@ -8,12 +8,12 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import pixel.cosmetics.Cosmetic;
-import pixel.cosmetics.CosmeticBase;
-import pixel.cosmetics.CosmeticHandler;
-import pixel.cosmetics.CosmeticModelBase;
-import pixel.cosmetics.option.CosmeticOption.InGuiSettings;
-import pixel.cosmetics.option.type.CosmeticOptionColor;
+import pixel.cosmetic.Cosmetic;
+import pixel.cosmetic.CosmeticBase;
+import pixel.cosmetic.CosmeticHandler;
+import pixel.cosmetic.CosmeticModelBase;
+import pixel.cosmetic.option.CosmeticOption.InGuiSettings;
+import pixel.cosmetic.option.type.CosmeticOptionColor;
 import pixel.util.ColorManager;
 
 public class TopHat extends Cosmetic {

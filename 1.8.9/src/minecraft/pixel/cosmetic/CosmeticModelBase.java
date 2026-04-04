@@ -1,4 +1,4 @@
-package pixel.cosmetics;
+package pixel.cosmetic;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;

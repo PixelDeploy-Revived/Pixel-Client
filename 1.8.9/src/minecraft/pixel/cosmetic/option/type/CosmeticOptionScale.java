@@ -1,8 +1,8 @@
-package pixel.cosmetics.option.type;
+package pixel.cosmetic.option.type;
 
 import net.minecraft.client.Minecraft;
-import pixel.cosmetics.Cosmetic;
-import pixel.cosmetics.option.CosmeticOption;
+import pixel.cosmetic.Cosmetic;
+import pixel.cosmetic.option.CosmeticOption;
 
 public class CosmeticOptionScale extends CosmeticOption {
 	public static class GuiSlider extends pixel.gui.GuiSlider {

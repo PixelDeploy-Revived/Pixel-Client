@@ -1,4 +1,4 @@
-package pixel.cosmetics;
+package pixel.cosmetic;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.client.renderer.entity.RenderPlayer;
-import pixel.cosmetics.impl.TopHat;
-import pixel.cosmetics.impl.Wings;
+import pixel.cosmetic.impl.TopHat;
+import pixel.cosmetic.impl.Wings;
 
 public class CosmeticHandler {
 	private static final List<Cosmetic> COSMETICS = Arrays.asList(

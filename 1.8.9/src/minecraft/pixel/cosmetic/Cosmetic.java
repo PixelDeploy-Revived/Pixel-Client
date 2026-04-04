@@ -1,11 +1,11 @@
-package pixel.cosmetics;
+package pixel.cosmetic;
 
 import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.client.gui.GuiScreen;
-import pixel.cosmetics.option.CosmeticOption;
-import pixel.cosmetics.option.type.CosmeticOptionColor;
-import pixel.cosmetics.option.type.CosmeticOptionScale;
+import pixel.cosmetic.option.CosmeticOption;
+import pixel.cosmetic.option.type.CosmeticOptionColor;
+import pixel.cosmetic.option.type.CosmeticOptionScale;
 import pixel.gui.GuiCosmeticOptions;
 
 public abstract class Cosmetic {

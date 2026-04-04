@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.ResourceLocation;
-import pixel.cosmetics.CosmeticHandler;
+import pixel.cosmetic.CosmeticHandler;
 import pixel.event.EventManager;
 import pixel.event.EventTarget;
 import pixel.event.impl.TickEvent;

@@ -5,8 +5,8 @@ import java.io.IOException;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-import pixel.cosmetics.Cosmetic;
-import pixel.cosmetics.option.type.CosmeticOptionColor;
+import pixel.cosmetic.Cosmetic;
+import pixel.cosmetic.option.type.CosmeticOptionColor;
 import pixel.gui.hud.ScreenPosition;
 import pixel.util.ColorManager;
 

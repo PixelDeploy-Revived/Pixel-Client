@@ -1,4 +1,4 @@
-package pixel.cosmetics;
+package pixel.cosmetic;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
