@@ -90,7 +90,7 @@ public class GuiModOptions extends GuiScreen {
 		
 		int totPages = mod.getOptions().length / optionsPerPage;
 		
-		if (totPages + 1 > 1) {
+		if (totPages + 1 > 1 && mod.getOptions().length != optionsPerPage) {
 			if (page > 0) {
 				buttonList.add(new GuiButton(-2, (width - 200) / 2 - 2 - 20, height / 6 + 168, 20, 20, "<"));
 			}
