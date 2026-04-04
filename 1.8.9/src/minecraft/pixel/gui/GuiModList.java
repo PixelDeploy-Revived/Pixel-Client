@@ -40,10 +40,12 @@ public class GuiModList extends GuiScreen {
 		
 		int j = 0;
 		int k = 0;
+		
+		int start = page * modsCanBeDrawn;
+		int end = Math.min(start + modsCanBeDrawn, mods.size());
 
-		for (int i = 0; i < modsCanBeDrawn; i++) {
-			int modIndex = i + (modsCanBeDrawn * page);
-			Mod mod = mods.get(modIndex);
+		for (int i = start; i < end; i++) {
+			Mod mod = mods.get(i);
 			
 			if (j >= cols) {
 				j = 0;
@@ -63,7 +65,7 @@ public class GuiModList extends GuiScreen {
 				modName = modName.substring(0, l);
 			}
 			
-			buttonList.add(new GuiButton(modIndex + 1, width / 2 - 80 / 2 + ((2 + 80) * (j - 1)), height / 6 + 32 + (2 + 20) * k, 80, 20, modName));
+			buttonList.add(new GuiButton(i + 1, width / 2 - 80 / 2 + ((2 + 80) * (j - 1)), height / 6 + 32 + (2 + 20) * k, 80, 20, modName));
 			
 			j++;
 		}
@@ -72,7 +74,7 @@ public class GuiModList extends GuiScreen {
 		
 		int totPages = mods.size() / modsCanBeDrawn;
 		
-		if (totPages > 1) {
+		if (totPages + 1 > 1) {
 			if (page > 0) {
 				buttonList.add(new GuiButton(-1, (width - 200) / 2 - 2 - 20, height / 6 + 168, 20, 20, "<"));
 			}
