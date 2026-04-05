@@ -30,9 +30,9 @@ public class ToggleSprintSneak extends ModDraggable {
 				new ModOption(new ModOptionParent("showText"), "textShadow", true, new InGuiSettings("Text Shadow")),
 				new ModOptionColor(new ModOptionParent("showText"), "textColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", true, false)),
 				new ModOptionEnum(new ModOptionParent("showText"), "brackets", Brackets.toEnumList(), Brackets.SQUARE.getIndex(), new InGuiSettings("Brackets")),
-				new ModOption(new ModOptionParent("showText"), "drawBackground", false, new InGuiSettings("Background")),
+				new ModOption(new ModOptionParent("showText"), "drawBackground", false, new InGuiSettings("Draw Background")),
 				new ModOptionColor(new ModOptionParent("showText"), "backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", false, true)),
-				new ModOption(new ModOptionParent("drawBackground"), "drawBorder", false, new InGuiSettings("Border")),
+				new ModOption(new ModOptionParent("drawBackground"), "drawBorder", false, new InGuiSettings("Draw Border")),
 				new ModOptionColor(new ModOptionParent("drawBorder"), "borderColor", ColorManager.BLACK.getARGB(), false, new ModOptionColor.InGuiSettings("Border Color", false, true)),
 				new ModOptionFloat(new ModOptionParent("drawBorder"), "borderThickness", 1.0F, 0.5F, 2.0F, new ModOptionFloat.InGuiSettings("Border Thickness", 1))
 				);
