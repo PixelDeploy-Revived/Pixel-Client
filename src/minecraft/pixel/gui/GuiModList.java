@@ -74,7 +74,7 @@ public class GuiModList extends GuiScreen {
 		
 		int totPages = mods.size() / modsCanBeDrawn;
 		
-		if (totPages + 1 > 1) {
+		if (totPages + 1 > 1 && mods.size() != modsCanBeDrawn) {
 			if (page > 0) {
 				buttonList.add(new GuiButton(-1, (width - 200) / 2 - 2 - 20, height / 6 + 168, 20, 20, "<"));
 			}
