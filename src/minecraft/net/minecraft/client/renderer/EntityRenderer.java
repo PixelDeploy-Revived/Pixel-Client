@@ -89,6 +89,7 @@ import net.optifine.util.TimedEvent;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
 import pixel.mod.impl.Freelook;
+import pixel.mod.impl.HurtCam;
 import pixel.mod.impl.OldVisuals;
 
 import org.apache.logging.log4j.LogManager;
@@ -697,8 +698,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
             f = f / (float)entitylivingbase.maxHurtTime;
             f = MathHelper.sin(f * f * f * f * (float)Math.PI);
             float f2 = entitylivingbase.attackedAtYaw;
+            
+            HurtCam hurtCamMod = ModHandler.get(HurtCam.class);
+            
             GlStateManager.rotate(-f2, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotate(-f * 14.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotate(-f * (hurtCamMod.isEnabled() ? hurtCamMod.castOptionValueIntoBoolean("hurtShake") ? hurtCamMod.castOptionValueIntoFloat("hurtShakeIntensity") : 0.0F : 14.0F), 0.0F, 0.0F, 1.0F);
             GlStateManager.rotate(f2, 0.0F, 1.0F, 0.0F);
         }
     }
