@@ -10,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.ItemPhysics;
 
 public class RenderEntityItem extends Render<EntityItem>
 {
@@ -35,6 +37,10 @@ public class RenderEntityItem extends Render<EntityItem>
         }
         else
         {
+        	if (ModHandler.get(ItemPhysics.class).isEnabled()) {
+        		return ModHandler.get(ItemPhysics.class).setupItemTransform(itemstack, itemIn, p_177077_2_, p_177077_4_, p_177077_6_, p_177077_8_, p_177077_9_);
+        	}
+        	
             boolean flag = p_177077_9_.isGui3d();
             int i = this.func_177078_a(itemstack);
             float f = 0.25F;
