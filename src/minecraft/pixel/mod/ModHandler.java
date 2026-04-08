@@ -21,6 +21,7 @@ import pixel.mod.impl.KeyStrokes;
 import pixel.mod.impl.Nametags;
 import pixel.mod.impl.OldVisuals;
 import pixel.mod.impl.PackDisplay;
+import pixel.mod.impl.Ping;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.Scoreboard;
 import pixel.mod.impl.togglesprintsneak.ToggleSprintSneak;
@@ -43,7 +44,8 @@ public class ModHandler {
 			new BlockOverlay(),
 			new Freelook(),
 			new HurtCam(),
-			new ItemPhysics()
+			new ItemPhysics(),
+			new Ping()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
