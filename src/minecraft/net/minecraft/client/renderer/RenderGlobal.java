@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -118,6 +119,9 @@ import net.optifine.shaders.ShadowUtils;
 import net.optifine.shaders.gui.GuiShaderOptions;
 import net.optifine.util.ChunkUtils;
 import net.optifine.util.RenderChunkUtils;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.BlockOverlay;
+import pixel.util.ColorManager;
 
 public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListener
 {
@@ -2617,6 +2621,19 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             GlStateManager.color(0.0F, 0.0F, 0.0F, 0.4F);
             GL11.glLineWidth(2.0F);
             GlStateManager.disableTexture2D();
+            
+            BlockOverlay blockOverlayMod = ModHandler.get(BlockOverlay.class);
+            
+            if (blockOverlayMod.isEnabled() && blockOverlayMod.castOptionValueIntoBoolean("outline")) {
+            	ColorManager outlineColor = new ColorManager(blockOverlayMod.getOptionColor("outlineColor").getARGB());
+            	
+            	if (blockOverlayMod.getOptionColor("outlineColor").isChromaEnabled()) {
+                	outlineColor = new ColorManager(Color.HSBtoRGB(System.currentTimeMillis() % (int) 2000.0F / 2000.0F, 1.0F, 1.0F));
+            	}
+            	
+            	GlStateManager.color(outlineColor.getRed() / 255.0F, outlineColor.getGreen() / 255.0F, outlineColor.getBlue() / 255.0F, 0.4F);
+            	GL11.glLineWidth(blockOverlayMod.castOptionValueIntoFloat("outlineWidth"));
+            }
 
             if (Config.isShaders())
             {
@@ -2642,7 +2659,13 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                     axisalignedbb = BlockModelUtils.getOffsetBoundingBox(axisalignedbb, block$enumoffsettype, blockpos);
                 }
 
-                drawSelectionBoundingBox(axisalignedbb.expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
+                if (!blockOverlayMod.isEnabled() || blockOverlayMod.isEnabled() && blockOverlayMod.castOptionValueIntoBoolean("outline")) {
+                	drawSelectionBoundingBox(axisalignedbb.expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
+                }
+                
+                if (blockOverlayMod.isEnabled() && blockOverlayMod.castOptionValueIntoBoolean("overlay")) {
+                	blockOverlayMod.drawSelectionOverlay(block.getSelectedBoundingBox(this.theWorld, blockpos).expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
+                }
             }
 
             GlStateManager.depthMask(true);
