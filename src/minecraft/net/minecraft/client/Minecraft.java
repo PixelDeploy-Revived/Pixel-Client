@@ -188,6 +188,7 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
 import pixel.Pixel;
+import pixel.event.impl.KeyEvent;
 import pixel.event.impl.TickEvent;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.impl.togglesprintsneak.MovementInput;
@@ -1924,6 +1925,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 {
                     KeyBinding.onTick(k);
                 }
+                
+                new KeyEvent(k).call();
 
                 if (this.debugCrashKeyPressTime > 0L)
                 {

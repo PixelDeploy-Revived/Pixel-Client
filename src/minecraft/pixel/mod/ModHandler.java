@@ -14,6 +14,7 @@ import pixel.mod.impl.Chat;
 import pixel.mod.impl.Coordinates;
 import pixel.mod.impl.Direction;
 import pixel.mod.impl.FPS;
+import pixel.mod.impl.Freelook;
 import pixel.mod.impl.KeyStrokes;
 import pixel.mod.impl.Nametags;
 import pixel.mod.impl.OldVisuals;
@@ -37,7 +38,8 @@ public class ModHandler {
 			new Coordinates(),
 			new PackDisplay(),
 			new Direction(),
-			new BlockOverlay()
+			new BlockOverlay(),
+			new Freelook()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
