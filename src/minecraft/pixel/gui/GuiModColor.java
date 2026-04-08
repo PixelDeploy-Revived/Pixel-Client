@@ -60,9 +60,7 @@ public class GuiModColor extends GuiScreen {
 		
 		if (option.getInGuiSettings().shouldAlphaSliderBeDrawn()) {
 			buttonList.add(sliderAlpha = new GuiSlider(4, (width - 150) / 2, height / 4 + 72 + j + i, "Alpha", 0, 0.0F, 255.0F, color.getAlpha()));
-			
-			sliderAlpha.enabled = !option.isChromaEnabled();
-			
+						
 			j += 24;
 		}
 		
