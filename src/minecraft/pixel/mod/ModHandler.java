@@ -13,6 +13,7 @@ import pixel.mod.impl.CPS;
 import pixel.mod.impl.Chat;
 import pixel.mod.impl.Coordinates;
 import pixel.mod.impl.Direction;
+import pixel.mod.impl.Extra;
 import pixel.mod.impl.FPS;
 import pixel.mod.impl.Freelook;
 import pixel.mod.impl.HurtCam;
@@ -45,7 +46,8 @@ public class ModHandler {
 			new Freelook(),
 			new HurtCam(),
 			new ItemPhysics(),
-			new Ping()
+			new Ping(),
+			new Extra()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

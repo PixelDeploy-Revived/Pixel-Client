@@ -88,6 +88,7 @@ import net.optifine.util.TextureUtils;
 import net.optifine.util.TimedEvent;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
+import pixel.mod.impl.Extra;
 import pixel.mod.impl.Freelook;
 import pixel.mod.impl.HurtCam;
 import pixel.mod.impl.OldVisuals;
@@ -919,7 +920,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         this.hurtCameraEffect(partialTicks);
 
-        if (this.mc.gameSettings.viewBobbing)
+        if (this.mc.gameSettings.viewBobbing && (!ModHandler.get(Extra.class).isEnabled() || ModHandler.get(Extra.class).isEnabled() && !ModHandler.get(Extra.class).castOptionValueIntoBoolean("minimalViewBobbing")))
         {
             this.setupViewBobbing(partialTicks);
         }
@@ -1197,7 +1198,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                         f10 = 1.0F;
                     }
 
-                    float f16 = this.mc.gameSettings.gammaSetting;
+                    float f16 = ModHandler.get(Extra.class).getGamma();
                     float f17 = 1.0F - f8;
                     float f13 = 1.0F - f9;
                     float f14 = 1.0F - f10;
