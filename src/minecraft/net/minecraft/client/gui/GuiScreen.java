@@ -37,6 +37,9 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Menu;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -674,7 +677,13 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
     {
         if (this.mc.theWorld != null)
         {
-            this.drawGradientRect(0, 0, this.width, this.height, -1072689136, -804253680);
+        	Menu menuMod = ModHandler.get(Menu.class);
+        	
+            if (menuMod.isEnabled()) {
+            	drawGradientRect(0, 0, width, height, menuMod.getOptionColor("primaryColor").getARGB(), menuMod.getOptionColor(menuMod.castOptionValueIntoBoolean("gradient") ? "secondaryColor" : "primaryColor").getARGB());
+            } else {
+            	this.drawGradientRect(0, 0, this.width, this.height, -1072689136, -804253680);
+            }
         }
         else
         {

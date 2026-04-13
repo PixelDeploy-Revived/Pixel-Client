@@ -19,6 +19,7 @@ import pixel.mod.impl.Freelook;
 import pixel.mod.impl.HurtCam;
 import pixel.mod.impl.ItemPhysics;
 import pixel.mod.impl.KeyStrokes;
+import pixel.mod.impl.Menu;
 import pixel.mod.impl.Nametags;
 import pixel.mod.impl.OldVisuals;
 import pixel.mod.impl.PackDisplay;
@@ -47,7 +48,8 @@ public class ModHandler {
 			new HurtCam(),
 			new ItemPhysics(),
 			new Ping(),
-			new Extra()
+			new Extra(),
+			new Menu()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
