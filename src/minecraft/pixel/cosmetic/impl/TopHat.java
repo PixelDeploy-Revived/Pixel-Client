@@ -36,7 +36,7 @@ public class TopHat extends Cosmetic {
 		}
 		
 		@Override
-		public void render(AbstractClientPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw_, float headPitch, float scale) {
+		public void render(AbstractClientPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch, float scale) {
 			GlStateManager.pushMatrix();
 			
 			renderPlayer.bindTexture(topHatTexture);
@@ -57,7 +57,7 @@ public class TopHat extends Cosmetic {
 			
 			GlStateManager.color(color.getRed() / 255.0F, color.getGreen() / 255.0F, color.getBlue() / 255.0F);
 			
-			modelTopHat.render(player, limbSwing, limbSwingAmount, ageInTicks, headYaw_, headPitch, scale);
+			modelTopHat.render(player, limbSwing, limbSwingAmount, ageInTicks, headYaw, headPitch, scale);
 			
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.popMatrix();
@@ -78,7 +78,7 @@ public class TopHat extends Cosmetic {
 			}
 			
 			@Override
-			public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw_, float headPitch, float scale) {
+			public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch, float scale) {
 				rim.rotateAngleX = playerModel.bipedHead.rotateAngleX;
 				rim.rotateAngleY = playerModel.bipedHead.rotateAngleY;
 				rim.rotationPointX = 0.0F;
