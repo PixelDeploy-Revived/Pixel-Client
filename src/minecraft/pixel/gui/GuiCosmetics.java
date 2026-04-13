@@ -1,6 +1,7 @@
 package pixel.gui;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 import net.minecraft.client.gui.GuiButton;
@@ -34,6 +35,8 @@ public class GuiCosmetics extends GuiScreen {
 		buttonList.clear();
 		
 		List<Cosmetic> cosmetics = CosmeticHandler.getCosmetics();
+		cosmetics.sort(Comparator.comparing(Cosmetic::getName));
+		
 		int rows = 4;
 		int cols = 3;
 		int cosmeticsCanBeDrawn = Math.min(cosmetics.size(), rows * cols);

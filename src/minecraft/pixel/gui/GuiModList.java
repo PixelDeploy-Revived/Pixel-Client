@@ -1,6 +1,7 @@
 package pixel.gui;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 import net.minecraft.client.gui.GuiButton;
@@ -34,6 +35,8 @@ public class GuiModList extends GuiScreen {
 		buttonList.clear();
 		
 		List<Mod> mods = ModHandler.getModsList();
+		mods.sort(Comparator.comparing(Mod::getName));
+		
 		int rows = 4;
 		int cols = 3;
 		int modsCanBeDrawn = Math.min(mods.size(), rows * cols);
