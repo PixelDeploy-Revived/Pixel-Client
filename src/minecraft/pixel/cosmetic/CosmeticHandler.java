@@ -17,7 +17,7 @@ public class CosmeticHandler {
 			new Blaze()
 			);
 	private static final Map<Class<? extends Cosmetic>, Cosmetic> COSMETICS_MAP = new HashMap<>();
-	private static final Map<Class<? extends CosmeticBase>, CosmeticBase> ACTIVE_COSMETICS = new HashMap<>();
+	private static final Map<RenderPlayer, Map<Class<? extends CosmeticBase>, CosmeticBase>> ACTIVE_COSMETICS = new HashMap<>();
 	
 	public static void renderOn(RenderPlayer renderPlayer) {
 		for (Cosmetic cosmetic : COSMETICS) {
@@ -40,12 +40,15 @@ public class CosmeticHandler {
 	}
 	
 	private static void activeCosmetic(RenderPlayer renderPlayer, Class<? extends CosmeticBase> clazz) {
-		if (!ACTIVE_COSMETICS.containsKey(clazz)) {
+		ACTIVE_COSMETICS.putIfAbsent(renderPlayer, new HashMap<>());
+		Map<Class<? extends CosmeticBase>, CosmeticBase> playerCosmetics = ACTIVE_COSMETICS.get(renderPlayer);
+		
+		if (!playerCosmetics.containsKey(clazz)) {
 			try {
 				CosmeticBase cosmeticBase = clazz.getConstructor(RenderPlayer.class).newInstance(renderPlayer);
 				
 				renderPlayer.addLayer(cosmeticBase);
-				ACTIVE_COSMETICS.put(clazz, cosmeticBase);
+				playerCosmetics.put(clazz, cosmeticBase);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -53,11 +56,15 @@ public class CosmeticHandler {
 	}
 	
 	private static void disactiveCosmetic(RenderPlayer renderPlayer, Class<? extends CosmeticBase> clazz) {
-		if (ACTIVE_COSMETICS.containsKey(clazz)) {
-			CosmeticBase cosmeticBase = ACTIVE_COSMETICS.get(clazz);
+		if (ACTIVE_COSMETICS.containsKey(renderPlayer)) {
+			Map<Class<? extends CosmeticBase>, CosmeticBase> playerCosmetics = ACTIVE_COSMETICS.get(renderPlayer);
 			
-			renderPlayer.getLayerRenderers().remove(cosmeticBase);
-			ACTIVE_COSMETICS.remove(clazz);
+			if (playerCosmetics.containsKey(clazz)) {
+				CosmeticBase cosmeticBase = playerCosmetics.get(clazz);
+				
+				renderPlayer.removeLayer(cosmeticBase);
+				playerCosmetics.remove(clazz);
+			}	
 		}
 	}
 }
