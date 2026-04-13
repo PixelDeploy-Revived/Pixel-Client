@@ -9,6 +9,8 @@
 As Pixel Client fan and developer I decided to rewrite it from scratch with just one goal: revive the project.
 For copyright reasons I sent an email to the [original developer](https://github.com/kiritodv), who gave me the permission and joined the project.
 
+Showcase: https://www.youtube.com/watch?v=NeZsdBfZ2d8
+
 ## 📦 Download
 **Pixel Client: Born Again!** is available for **Premium** and **SP** (offline) players.
 
