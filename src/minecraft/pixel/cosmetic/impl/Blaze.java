@@ -36,6 +36,7 @@ public class Blaze extends Cosmetic {
 			modelBlaze = new ModelBlaze(renderPlayer);
 		}
 		
+		@Override
 		public void render(AbstractClientPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch, float scale) {
 			GlStateManager.pushMatrix();
 			GlStateManager.disableLighting();
@@ -73,6 +74,7 @@ public class Blaze extends Cosmetic {
 				}
 			}
 			
+			@Override
 			public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch, float scale) {
 				setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, headYaw, headPitch, scale, entityIn);
 				
@@ -81,6 +83,7 @@ public class Blaze extends Cosmetic {
 				}
 			}
 			
+			@Override
 			public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch, float scale, Entity entityIn) {
 				float angle = ageInTicks * (float) Math.PI * -0.1F;
 				

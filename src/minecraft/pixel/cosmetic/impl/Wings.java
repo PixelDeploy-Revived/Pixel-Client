@@ -38,6 +38,7 @@ public class Wings extends Cosmetic {
 			modelWings = new ModelWings(renderPlayer);
 		}
 		
+		@Override
 		public void render(AbstractClientPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 			GlStateManager.pushMatrix();
 			
@@ -78,6 +79,7 @@ public class Wings extends Cosmetic {
 				wing.addChild(wingTip);
 			}
 			
+			@Override
 			public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch, float scale) {
 				GlStateManager.pushMatrix();
 				GlStateManager.disableLighting();
