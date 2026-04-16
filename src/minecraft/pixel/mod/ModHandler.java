@@ -23,6 +23,7 @@ import pixel.mod.impl.Menu;
 import pixel.mod.impl.Nametags;
 import pixel.mod.impl.OldVisuals;
 import pixel.mod.impl.PackDisplay;
+import pixel.mod.impl.Particles;
 import pixel.mod.impl.Ping;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.Scoreboard;
@@ -49,7 +50,8 @@ public class ModHandler {
 			new ItemPhysics(),
 			new Ping(),
 			new Extra(),
-			new Menu()
+			new Menu(),
+			new Particles()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

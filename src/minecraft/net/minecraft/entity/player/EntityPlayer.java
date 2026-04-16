@@ -74,6 +74,8 @@ import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.LockCode;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Particles;
 
 @SuppressWarnings("incomplete-switch")
 public abstract class EntityPlayer extends EntityLivingBase
@@ -1354,6 +1356,18 @@ public abstract class EntityPlayer extends EntityLivingBase
 
                     if (flag2)
                     {
+                    	Particles particlesMod = ModHandler.get(Particles.class);
+                    	
+                    	if (particlesMod.isEnabled()) {
+                    		if (particlesMod.castOptionValueIntoBoolean("affectCriticals") && particlesMod.castOptionValueIntoBoolean("alwaysCriticals")) {
+                        		this.onCriticalHit(targetEntity);
+                        	}
+                        	
+                        	if (particlesMod.castOptionValueIntoBoolean("affectSharpness") && particlesMod.castOptionValueIntoBoolean("alwaysSharpness")) {
+                        		this.onEnchantmentCritical(targetEntity);
+                        	}
+                    	}
+                    	
                         if (i > 0)
                         {
                             targetEntity.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * (float)i * 0.5F), 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F) * (float)i * 0.5F));
@@ -1373,12 +1387,16 @@ public abstract class EntityPlayer extends EntityLivingBase
 
                         if (flag)
                         {
-                            this.onCriticalHit(targetEntity);
+                            if (!particlesMod.isEnabled() || particlesMod.isEnabled() && particlesMod.castOptionValueIntoBoolean("affectCriticals")) {
+                            	this.onCriticalHit(targetEntity);
+                            }
                         }
 
                         if (f1 > 0.0F)
                         {
-                            this.onEnchantmentCritical(targetEntity);
+                        	if (!particlesMod.isEnabled() || particlesMod.isEnabled() && particlesMod.castOptionValueIntoBoolean("affectSharpness")) {
+                            	this.onEnchantmentCritical(targetEntity);
+                            }
                         }
 
                         if (f >= 18.0F)

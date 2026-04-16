@@ -4,6 +4,8 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Particles;
 
 public class EntityParticleEmitter extends EntityFX
 {
@@ -33,7 +35,9 @@ public class EntityParticleEmitter extends EntityFX
      */
     public void onUpdate()
     {
-        for (int i = 0; i < 16; ++i)
+    	int particlesMultiplierFactor = ModHandler.get(Particles.class).isEnabled() ? ModHandler.get(Particles.class).castOptionValueIntoInt("multiplierFactor") : 1;
+    	
+        for (int i = 0; i < 16 * particlesMultiplierFactor; ++i)
         {
             double d0 = (double)(this.rand.nextFloat() * 2.0F - 1.0F);
             double d1 = (double)(this.rand.nextFloat() * 2.0F - 1.0F);
