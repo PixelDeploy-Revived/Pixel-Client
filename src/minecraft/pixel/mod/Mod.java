@@ -5,8 +5,13 @@ import org.apache.commons.lang3.StringUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import pixel.Pixel;
 import pixel.event.EventManager;
+import pixel.gui.Gui;
 import pixel.gui.GuiModOptions;
 import pixel.mod.option.ModOption;
 import pixel.mod.option.type.ModOptionColor;
@@ -114,5 +119,44 @@ public abstract class Mod {
 	
 	public ModOptionColor getOptionColor(String key) {
 		return (ModOptionColor) getOption(key);
+	}
+	
+	public void drawText(String text, float x, float y, int color, boolean dropShadow, boolean chroma) {
+		Gui.drawText(font, text, x, y, color, dropShadow, chroma);
+	}
+	
+	public void drawTexturedModalRect(float x, float y, float textureX, float textureY, int width, int height) {
+		float f = 0.00390625F;
+		float f1 = 0.00390625F;
+        
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldRenderer = tessellator.getWorldRenderer();
+		
+		worldRenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+		worldRenderer.pos((double) (x), (double) (y + height), 0.0D).tex((double) (textureX * f), (double) ((textureY + height) * f1)).endVertex();
+		worldRenderer.pos((double) (x + width), (double) (y + height), 0.0D).tex((double) ((textureX + width) * f), (double) ((textureY + height) * f1)).endVertex();
+		worldRenderer.pos((double) (x + width), (double) (y), 0.0D).tex((double) ((textureX + width) * f), (double) (textureY * f1)).endVertex();
+		worldRenderer.pos((double) (x), (double) (y), 0.0D).tex((double) (textureX * f), (double) (textureY * f1)).endVertex();
+		
+		tessellator.draw();
+	}
+	
+	public void drawRect(float left, float top, float right, float bottom, int color) {
+		Gui.drawRect(left, top, right, bottom, color);
+	}
+	
+	public void drawBorder(float x, float y, float width, float height, int color, float thickness) {
+		Gui.drawHollowRect(x, y, width - thickness, height - thickness, thickness, color);
+	}
+	
+	public void drawScaledText(double scale, String text, float x, float y, int color, boolean textShadow, boolean chroma) {
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(x, y, 0.0F);
+		GlStateManager.scale(scale, scale, 1.0D);
+		GlStateManager.translate(-x, -y, 0.0F);
+		
+		drawText(text, x, y, color, textShadow, chroma);
+		
+		GlStateManager.popMatrix();
 	}
 }
