@@ -1,15 +1,18 @@
 package pixel.util;
 
 public class ColorManager {
-	public static final ColorManager BLACK_5A = new ColorManager(90, 0, 0, 0);
 	public static final ColorManager WHITE = new ColorManager(255, 255, 255);
-	public static final ColorManager BLACK = new ColorManager(0, 0, 0);
-	public static final ColorManager BLACK_66 = new ColorManager(102, 0, 0, 0);
+	public static final ColorManager WHITE_20 = new ColorManager(32, 255, 255, 255);
 	public static final ColorManager WHITE_66 = new ColorManager(102, 255, 255, 255);
-	public static final ColorManager BLACK_7F = new ColorManager(127, 0, 0, 0);
+	public static final ColorManager WHITE_90 = new ColorManager(144, 255, 255, 255);
+	public static final ColorManager BLACK = new ColorManager(0, 0, 0);
 	public static final ColorManager BLACK_40 = new ColorManager(64, 0, 0, 0);
 	public static final ColorManager BLACK_50 = new ColorManager(80, 0, 0, 0);
+	public static final ColorManager BLACK_5A = new ColorManager(90, 0, 0, 0);
 	public static final ColorManager BLACK_60 = new ColorManager(96, 0, 0, 0);
+	public static final ColorManager BLACK_66 = new ColorManager(102, 0, 0, 0);
+	public static final ColorManager BLACK_7F = new ColorManager(127, 0, 0, 0);
+	public static final ColorManager BLACK_80 = new ColorManager(128, 0, 0, 0);
 	public static final ColorManager BLACK_C0 = new ColorManager(192, 16, 16, 16);
 	public static final ColorManager BLACK_D0 = new ColorManager(208, 16, 16, 16);
 	public static final ColorManager DEFAULT_RED = new ColorManager(255, 85, 85);

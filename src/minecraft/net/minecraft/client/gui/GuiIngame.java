@@ -46,6 +46,7 @@ import net.optifine.CustomColors;
 import pixel.event.impl.RenderEvent;
 import pixel.mod.ModHandler;
 import pixel.mod.impl.OldVisuals;
+import pixel.mod.impl.TabOverlay;
 
 public class GuiIngame extends Gui
 {
@@ -362,7 +363,12 @@ public class GuiIngame extends Gui
         if (this.mc.gameSettings.keyBindPlayerList.isKeyDown() && (!this.mc.isIntegratedServerRunning() || this.mc.thePlayer.sendQueue.getPlayerInfoMap().size() > 1 || scoreobjective1 != null))
         {
             this.overlayPlayerList.updatePlayerList(true);
-            this.overlayPlayerList.renderPlayerlist(i, scoreboard, scoreobjective1);
+            
+            if (ModHandler.get(TabOverlay.class).isEnabled()) {
+            	ModHandler.get(TabOverlay.class).renderPlayerlist(scoreboard, scoreobjective1);
+            } else {
+            	this.overlayPlayerList.renderPlayerlist(i, scoreboard, scoreobjective1);
+            }
         }
         else
         {

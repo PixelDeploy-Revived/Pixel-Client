@@ -234,7 +234,7 @@ public class GuiPlayerTabOverlay extends Gui
         }
     }
 
-    protected void drawPing(int p_175245_1_, int p_175245_2_, int p_175245_3_, NetworkPlayerInfo networkPlayerInfoIn)
+    public void drawPing(int p_175245_1_, int p_175245_2_, int p_175245_3_, NetworkPlayerInfo networkPlayerInfoIn)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(icons);
@@ -271,7 +271,7 @@ public class GuiPlayerTabOverlay extends Gui
         this.zLevel -= 100.0F;
     }
 
-    private void drawScoreboardValues(ScoreObjective p_175247_1_, int p_175247_2_, String p_175247_3_, int p_175247_4_, int p_175247_5_, NetworkPlayerInfo p_175247_6_)
+    public void drawScoreboardValues(ScoreObjective p_175247_1_, int p_175247_2_, String p_175247_3_, int p_175247_4_, int p_175247_5_, NetworkPlayerInfo p_175247_6_)
     {
         int i = p_175247_1_.getScoreboard().getValueFromObjective(p_175247_3_, p_175247_1_).getScorePoints();
 
@@ -395,5 +395,17 @@ public class GuiPlayerTabOverlay extends Gui
             ScorePlayerTeam scoreplayerteam1 = p_compare_2_.getPlayerTeam();
             return ComparisonChain.start().compareTrueFirst(p_compare_1_.getGameType() != WorldSettings.GameType.SPECTATOR, p_compare_2_.getGameType() != WorldSettings.GameType.SPECTATOR).compare(scoreplayerteam != null ? scoreplayerteam.getRegisteredName() : "", scoreplayerteam1 != null ? scoreplayerteam1.getRegisteredName() : "").compare(p_compare_1_.getGameProfile().getName(), p_compare_2_.getGameProfile().getName()).result();
         }
+    }
+    
+    public static final Ordering<NetworkPlayerInfo> getNetworkPlayerInfos() {
+    	return field_175252_a;
+    }
+    
+    public IChatComponent getHeader() {
+    	return header;
+    }
+    
+    public IChatComponent getFooter() {
+    	return footer;
     }
 }
