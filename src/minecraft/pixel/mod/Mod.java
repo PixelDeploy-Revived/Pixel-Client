@@ -150,13 +150,6 @@ public abstract class Mod {
 	}
 	
 	public void drawScaledText(double scale, String text, float x, float y, int color, boolean textShadow, boolean chroma) {
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(x, y, 0.0F);
-		GlStateManager.scale(scale, scale, 1.0D);
-		GlStateManager.translate(-x, -y, 0.0F);
-		
-		drawText(text, x, y, color, textShadow, chroma);
-		
-		GlStateManager.popMatrix();
+		Gui.drawText(font, scale, text, x, y, color, textShadow, chroma);
 	}
 }
