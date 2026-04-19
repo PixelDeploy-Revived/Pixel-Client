@@ -7,6 +7,7 @@ import java.util.Map;
 
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import pixel.cosmetic.impl.Blaze;
+import pixel.cosmetic.impl.Halo;
 import pixel.cosmetic.impl.TopHat;
 import pixel.cosmetic.impl.Wings;
 
@@ -14,7 +15,8 @@ public class CosmeticHandler {
 	private static final List<Cosmetic> COSMETICS = Arrays.asList(
 			new Wings(),
 			new TopHat(),
-			new Blaze()
+			new Blaze(),
+			new Halo()
 			);
 	private static final Map<Class<? extends Cosmetic>, Cosmetic> COSMETICS_MAP = new HashMap<>();
 	private static final Map<RenderPlayer, Map<Class<? extends CosmeticBase>, CosmeticBase>> ACTIVE_COSMETICS = new HashMap<>();
