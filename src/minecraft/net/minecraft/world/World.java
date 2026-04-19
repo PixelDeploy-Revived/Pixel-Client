@@ -52,6 +52,8 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.TimeChanger;
 
 public abstract class World implements IBlockAccess
 {
@@ -1492,7 +1494,7 @@ public abstract class World implements IBlockAccess
      */
     public float getCelestialAngle(float partialTicks)
     {
-        return this.provider.calculateCelestialAngle(this.worldInfo.getWorldTime(), partialTicks);
+        return ModHandler.get(TimeChanger.class).isEnabled() ? ModHandler.get(TimeChanger.class).getTime() : this.provider.calculateCelestialAngle(this.worldInfo.getWorldTime(), partialTicks);
     }
 
     public int getMoonPhase()

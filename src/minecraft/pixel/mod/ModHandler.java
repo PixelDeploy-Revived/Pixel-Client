@@ -31,6 +31,7 @@ import pixel.mod.impl.Ping;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.Scoreboard;
 import pixel.mod.impl.TabOverlay;
+import pixel.mod.impl.TimeChanger;
 import pixel.mod.impl.Zoom;
 import pixel.mod.impl.togglesprintsneak.ToggleSprintSneak;
 
@@ -61,7 +62,8 @@ public class ModHandler {
 			new Zoom(),
 			new HealthIndicator(),
 			new Bossbar(),
-			new HitColor()
+			new HitColor(),
+			new TimeChanger()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
