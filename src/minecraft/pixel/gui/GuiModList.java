@@ -82,7 +82,7 @@ public class GuiModList extends GuiScreen {
 				buttonList.add(new GuiButton(-1, (width - 200) / 2 - 2 - 20, height / 6 + 168, 20, 20, "<"));
 			}
 			
-			if (page < totPages - 1) {
+			if (page < totPages && page - 1 != totPages) {
 				buttonList.add(new GuiButton(-2, (width + 200) / 2 + 2, height / 6 + 168, 20, 20, ">"));
 			}
 		}
