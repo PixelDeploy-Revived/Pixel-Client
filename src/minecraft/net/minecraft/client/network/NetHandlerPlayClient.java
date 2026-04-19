@@ -209,6 +209,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.storage.MapData;
 import pixel.gui.GuiDisconnected;
 import pixel.gui.GuiMainMenu;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Particles;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -888,11 +890,15 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
             }
             else if (packetIn.getAnimationType() == 4)
             {
-                this.gameController.effectRenderer.emitParticleAtEntity(entity, EnumParticleTypes.CRIT);
+            	if (!ModHandler.get(Particles.class).isEnabled() || ModHandler.get(Particles.class).isEnabled() && ModHandler.get(Particles.class).castOptionValueIntoBoolean("affectCriticals")) {
+            		this.gameController.effectRenderer.emitParticleAtEntity(entity, EnumParticleTypes.CRIT);
+            	}
             }
             else if (packetIn.getAnimationType() == 5)
-            {
-                this.gameController.effectRenderer.emitParticleAtEntity(entity, EnumParticleTypes.CRIT_MAGIC);
+            {            	
+            	if (!ModHandler.get(Particles.class).isEnabled() || ModHandler.get(Particles.class).isEnabled() && ModHandler.get(Particles.class).castOptionValueIntoBoolean("affectSharpness")) {
+            		this.gameController.effectRenderer.emitParticleAtEntity(entity, EnumParticleTypes.CRIT_MAGIC);
+            	}
             }
         }
     }

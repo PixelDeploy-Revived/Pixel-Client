@@ -50,6 +50,8 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Particles;
 import pixel.mod.impl.togglesprintsneak.MovementInput;
 
 public class EntityPlayerSP extends AbstractClientPlayer
@@ -670,12 +672,16 @@ public class EntityPlayerSP extends AbstractClientPlayer
      */
     public void onCriticalHit(Entity entityHit)
     {
-        this.mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT);
+    	if (!ModHandler.get(Particles.class).isEnabled() || ModHandler.get(Particles.class).isEnabled() && ModHandler.get(Particles.class).castOptionValueIntoBoolean("affectCriticals")) {
+    		this.mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT);
+    	}
     }
 
     public void onEnchantmentCritical(Entity entityHit)
     {
-        this.mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT_MAGIC);
+    	if (!ModHandler.get(Particles.class).isEnabled() || ModHandler.get(Particles.class).isEnabled() && ModHandler.get(Particles.class).castOptionValueIntoBoolean("affectSharpness")) {
+    		this.mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT_MAGIC);
+    	}
     }
 
     /**
