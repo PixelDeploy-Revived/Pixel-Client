@@ -92,6 +92,7 @@ import pixel.mod.impl.Extra;
 import pixel.mod.impl.Freelook;
 import pixel.mod.impl.HurtCam;
 import pixel.mod.impl.OldVisuals;
+import pixel.mod.impl.Zoom;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -636,25 +637,36 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 GameSettings gamesettings = this.mc.gameSettings;
                 flag = GameSettings.isKeyDown(this.mc.gameSettings.ofKeyBindZoom);
             }
+            
+            Zoom zoomMod = ModHandler.get(Zoom.class);
 
             if (flag)
             {
                 if (!Config.zoomMode)
                 {
                     Config.zoomMode = true;
-                    Config.zoomSmoothCamera = this.mc.gameSettings.smoothCamera;
-                    this.mc.gameSettings.smoothCamera = true;
+                    
+                    if (!zoomMod.isEnabled() || zoomMod.isEnabled() && zoomMod.castOptionValueIntoBoolean("smoothCamera")) {
+                    	Config.zoomSmoothCamera = this.mc.gameSettings.smoothCamera;
+                        this.mc.gameSettings.smoothCamera = true;
+                    }
+                    
                     this.mc.renderGlobal.displayListEntitiesDirty = true;
                 }
 
                 if (Config.zoomMode)
                 {
-                    f /= 4.0F;
+                    f /= zoomMod.isEnabled() ? zoomMod.castOptionValueIntoBoolean("scrollToZoom") ? zoomMod.getScrollAmount() : 4.0F : 4.0F;
                 }
             }
             else if (Config.zoomMode)
             {
                 Config.zoomMode = false;
+                
+                if (zoomMod.isEnabled()) {
+                	zoomMod.setScrollTotal(zoomMod.castOptionValueIntoInt("zoomLevel"));
+                }
+                
                 this.mc.gameSettings.smoothCamera = Config.zoomSmoothCamera;
                 this.mouseFilterXAxis = new MouseFilter();
                 this.mouseFilterYAxis = new MouseFilter();

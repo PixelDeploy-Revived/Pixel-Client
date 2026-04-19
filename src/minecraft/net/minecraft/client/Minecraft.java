@@ -160,6 +160,7 @@ import net.minecraft.profiler.PlayerUsageSnooper;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.integrated.IntegratedServer;
+import net.minecraft.src.Config;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.IStatStringFormat;
 import net.minecraft.stats.StatFileWriter;
@@ -191,6 +192,8 @@ import pixel.Pixel;
 import pixel.event.impl.KeyEvent;
 import pixel.event.impl.TickEvent;
 import pixel.gui.GuiMainMenu;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.Zoom;
 import pixel.mod.impl.togglesprintsneak.MovementInput;
 
 public class Minecraft implements IThreadListener, IPlayerUsage
@@ -1891,7 +1894,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                         }
                         else
                         {
-                            this.thePlayer.inventory.changeCurrentItem(j);
+                            if (!Config.zoomMode || Config.zoomMode && !ModHandler.get(Zoom.class).isEnabled() || Config.zoomMode && ModHandler.get(Zoom.class).isEnabled() && !ModHandler.get(Zoom.class).castOptionValueIntoBoolean("scrollToZoom")) {
+                            	this.thePlayer.inventory.changeCurrentItem(j);
+                            }
                         }
                     }
 

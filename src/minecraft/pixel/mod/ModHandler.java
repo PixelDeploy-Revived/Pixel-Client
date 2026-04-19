@@ -28,6 +28,7 @@ import pixel.mod.impl.Ping;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.Scoreboard;
 import pixel.mod.impl.TabOverlay;
+import pixel.mod.impl.Zoom;
 import pixel.mod.impl.togglesprintsneak.ToggleSprintSneak;
 
 public class ModHandler {
@@ -53,7 +54,8 @@ public class ModHandler {
 			new Extra(),
 			new Menu(),
 			new Particles(),
-			new TabOverlay()
+			new TabOverlay(),
+			new Zoom()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
