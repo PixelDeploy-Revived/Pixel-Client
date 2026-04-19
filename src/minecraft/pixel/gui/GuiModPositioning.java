@@ -1,6 +1,7 @@
 package pixel.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import pixel.util.ColorManager;
 
 public class GuiModPositioning extends GuiScreen {
 	private final HashMap<IRenderer, ScreenPosition> renderers = new HashMap<IRenderer, ScreenPosition>();
+	private final ArrayList<IRenderer> clickedRenderers = new ArrayList<IRenderer>();
 	private Optional<IRenderer> selectedRenderer = Optional.empty();
 	
 	private boolean isRightButtonDown = false;
@@ -60,6 +62,10 @@ public class GuiModPositioning extends GuiScreen {
 		if (selectedRenderer.isPresent()) {
 			IRenderer renderer = selectedRenderer.get();
 			
+			if (!clickedRenderers.contains(renderer)) {
+				clickedRenderers.add(renderer);
+			}
+			
 			if (isRightButtonDown) {
 				renderers.get(renderer).setAbsolute(mouseX - renderer.getWidth() / 2, mouseY - renderer.getHeight() / 2);
 			}
@@ -101,19 +107,8 @@ public class GuiModPositioning extends GuiScreen {
 	}
 	
 	@Override
-	protected void keyTyped(char typedChar, int keyCode) throws IOException {
-		if (keyCode == Keyboard.KEY_ESCAPE) {
-			renderers.entrySet().forEach((entry) -> {
-				entry.getKey().setPosition(entry.getValue());
-			});
-			
-			mc.displayGuiScreen(null);
-		}
-	}
-	
-	@Override
 	public void onGuiClosed() {
-		for (IRenderer renderer : renderers.keySet()) {
+		for (IRenderer renderer : clickedRenderers) {
 			renderer.setPosition(renderers.get(renderer));
 		}
 	}
