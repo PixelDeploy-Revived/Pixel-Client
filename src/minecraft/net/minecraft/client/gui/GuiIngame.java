@@ -45,6 +45,7 @@ import net.minecraft.world.border.WorldBorder;
 import net.optifine.CustomColors;
 import pixel.event.impl.RenderEvent;
 import pixel.mod.ModHandler;
+import pixel.mod.impl.Extra;
 import pixel.mod.impl.OldVisuals;
 import pixel.mod.impl.TabOverlay;
 
@@ -536,6 +537,10 @@ public class GuiIngame extends Gui
 
     protected boolean showCrosshair()
     {
+    	if (mc.gameSettings.thirdPersonView != 0 && ModHandler.get(Extra.class).isEnabled() && !ModHandler.get(Extra.class).castOptionValueIntoBoolean("showCrosshairInF3")) {
+    		return false;
+    	}
+    	
         if (this.mc.gameSettings.showDebugInfo && !this.mc.thePlayer.hasReducedDebug() && !this.mc.gameSettings.reducedDebugInfo)
         {
             return false;
