@@ -1,6 +1,8 @@
 package net.minecraft.client.renderer.entity;
 
 import com.google.common.collect.Lists;
+
+import java.awt.Color;
 import java.nio.FloatBuffer;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -28,6 +30,10 @@ import net.optifine.EmissiveTextures;
 import net.optifine.entity.model.CustomEntityModels;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.HitColor;
+import pixel.util.ColorManager;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
@@ -416,10 +422,31 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
             if (flag1)
             {
-                this.brightnessBuffer.put(1.0F);
-                this.brightnessBuffer.put(0.0F);
-                this.brightnessBuffer.put(0.0F);
-                this.brightnessBuffer.put(0.3F);
+            	HitColor hitColorMod = ModHandler.get(HitColor.class);
+            	
+            	float red = 255.0F;
+            	float green = 0.0F;
+            	float blue = 0.0F;
+            	float alpha = 76.0F;
+            	
+            	if (hitColorMod.isEnabled()) {
+            		ColorManager color = new ColorManager(hitColorMod.getOptionColor("hitColor").getARGB());
+            		
+            		alpha = color.getAlpha();
+            		
+            		if (hitColorMod.getOptionColor("hitColor").isChromaEnabled()) {
+            			color = new ColorManager(Color.HSBtoRGB(System.currentTimeMillis() % (int) 2000.0F / 2000.0F, 1.0F, 1.0F));
+                	}
+            		
+            		red = color.getRed();
+            		green = color.getGreen();
+            		blue = color.getBlue();
+            	}
+            	
+                this.brightnessBuffer.put(red / 255.0F);
+                this.brightnessBuffer.put(green / 255.0F);
+                this.brightnessBuffer.put(blue / 255.0F);
+                this.brightnessBuffer.put(alpha / 255.0F);
 
                 if (Config.isShaders())
                 {
