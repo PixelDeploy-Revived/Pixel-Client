@@ -210,6 +210,7 @@ import net.minecraft.world.storage.MapData;
 import pixel.gui.GuiDisconnected;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
+import pixel.mod.impl.Extra;
 import pixel.mod.impl.Particles;
 
 import org.apache.logging.log4j.LogManager;
@@ -1477,7 +1478,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                 if (this.field_147308_k && this.gameController.thePlayer.getStatFileWriter().readStat(statbase) == 0)
                 {
                     Achievement achievement = (Achievement)statbase;
-                    this.gameController.guiAchievement.displayAchievement(achievement);
+                    
+                    if (!ModHandler.get(Extra.class).isEnabled() || ModHandler.get(Extra.class).isEnabled() && ModHandler.get(Extra.class).castOptionValueIntoBoolean("achievementNotifications")) {
+                    	this.gameController.guiAchievement.displayAchievement(achievement);
+                    }
+                    
                     this.gameController.getTwitchStream().func_152911_a(new MetadataAchievement(achievement), 0L);
 
                     if (statbase == AchievementList.openInventory)

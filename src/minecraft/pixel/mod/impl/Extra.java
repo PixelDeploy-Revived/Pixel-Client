@@ -14,7 +14,8 @@ public class Extra extends Mod {
 				new ModOption("fullbright", false, new InGuiSettings("Fullbright")),
 				new ModOption("minimalViewBobbing", false, new InGuiSettings("Minimal View Bobbing")),
 				new ModOption("hotbarScrolling", true, new InGuiSettings("Hotbar Scrolling")),
-				new ModOption("showCrosshairInF3", true, new InGuiSettings("Show Crosshair In F3"))
+				new ModOption("showCrosshairInF3", true, new InGuiSettings("Show Crosshair In F3")),
+				new ModOption("achievementNotifications", true, new InGuiSettings("Achievement Notifications"))
 				);
 	}
 	
