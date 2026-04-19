@@ -75,12 +75,12 @@ public class GuiCosmetics extends GuiScreen {
 		
 		int totPages = cosmetics.size() / cosmeticsCanBeDrawn;
 		
-		if (totPages > 1) {
+		if (totPages > 1 && cosmetics.size() != cosmeticsCanBeDrawn) {
 			if (page > 0) {
 				buttonList.add(new GuiButton(-1, (width - 200) / 2 - 2 - 20, height / 6 + 168, 20, 20, "<"));
 			}
 			
-			if (page < totPages) {
+			if (page < totPages - 1) {
 				buttonList.add(new GuiButton(-2, (width + 200) / 2 + 2, height / 6 + 168, 20, 20, ">"));
 			}
 		}
