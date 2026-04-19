@@ -9,6 +9,7 @@ import java.util.Map;
 import pixel.gui.hud.HUD;
 import pixel.mod.impl.ArmorStatus;
 import pixel.mod.impl.BlockOverlay;
+import pixel.mod.impl.Bossbar;
 import pixel.mod.impl.CPS;
 import pixel.mod.impl.Chat;
 import pixel.mod.impl.Coordinates;
@@ -57,7 +58,8 @@ public class ModHandler {
 			new Particles(),
 			new TabOverlay(),
 			new Zoom(),
-			new HealthIndicator()
+			new HealthIndicator(),
+			new Bossbar()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

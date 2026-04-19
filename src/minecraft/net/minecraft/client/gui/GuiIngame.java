@@ -45,6 +45,7 @@ import net.minecraft.world.border.WorldBorder;
 import net.optifine.CustomColors;
 import pixel.event.impl.RenderEvent;
 import pixel.mod.ModHandler;
+import pixel.mod.impl.Bossbar;
 import pixel.mod.impl.Extra;
 import pixel.mod.impl.OldVisuals;
 import pixel.mod.impl.TabOverlay;
@@ -193,7 +194,9 @@ public class GuiIngame extends Gui
         GlStateManager.enableAlpha();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         this.mc.mcProfiler.startSection("bossHealth");
-        this.renderBossHealth();
+        if (!ModHandler.get(Bossbar.class).isEnabled()) {
+        	this.renderBossHealth();
+        }
         this.mc.mcProfiler.endSection();
 
         if (this.mc.playerController.shouldDrawHUD())
