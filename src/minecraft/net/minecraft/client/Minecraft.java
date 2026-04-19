@@ -193,6 +193,7 @@ import pixel.event.impl.KeyEvent;
 import pixel.event.impl.TickEvent;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
+import pixel.mod.impl.Extra;
 import pixel.mod.impl.Zoom;
 import pixel.mod.impl.togglesprintsneak.MovementInput;
 
@@ -1894,7 +1895,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                         }
                         else
                         {
-                            if (!Config.zoomMode || Config.zoomMode && !ModHandler.get(Zoom.class).isEnabled() || Config.zoomMode && ModHandler.get(Zoom.class).isEnabled() && !ModHandler.get(Zoom.class).castOptionValueIntoBoolean("scrollToZoom")) {
+                            if ((!ModHandler.get(Extra.class).isEnabled() || ModHandler.get(Extra.class).isEnabled() && ModHandler.get(Extra.class).castOptionValueIntoBoolean("hotbarScrolling")) && (!Config.zoomMode || Config.zoomMode && !ModHandler.get(Zoom.class).isEnabled() || Config.zoomMode && ModHandler.get(Zoom.class).isEnabled() && !ModHandler.get(Zoom.class).castOptionValueIntoBoolean("scrollToZoom"))) {
                             	this.thePlayer.inventory.changeCurrentItem(j);
                             }
                         }

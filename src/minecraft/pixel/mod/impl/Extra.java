@@ -12,7 +12,8 @@ public class Extra extends Mod {
 		
 		loadOptions(
 				new ModOption("fullbright", false, new InGuiSettings("Fullbright")),
-				new ModOption("minimalViewBobbing", false, new InGuiSettings("Minimal View Bobbing"))
+				new ModOption("minimalViewBobbing", false, new InGuiSettings("Minimal View Bobbing")),
+				new ModOption("hotbarScrolling", true, new InGuiSettings("Hotbar Scrolling"))
 				);
 	}
 	
