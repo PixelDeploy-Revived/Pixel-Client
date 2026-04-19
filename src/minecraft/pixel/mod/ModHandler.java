@@ -16,6 +16,7 @@ import pixel.mod.impl.Direction;
 import pixel.mod.impl.Extra;
 import pixel.mod.impl.FPS;
 import pixel.mod.impl.Freelook;
+import pixel.mod.impl.HealthIndicator;
 import pixel.mod.impl.HurtCam;
 import pixel.mod.impl.ItemPhysics;
 import pixel.mod.impl.KeyStrokes;
@@ -55,7 +56,8 @@ public class ModHandler {
 			new Menu(),
 			new Particles(),
 			new TabOverlay(),
-			new Zoom()
+			new Zoom(),
+			new HealthIndicator()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
