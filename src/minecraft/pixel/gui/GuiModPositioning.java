@@ -44,10 +44,6 @@ public class GuiModPositioning extends GuiScreen {
 		Gui.drawHorizontalLine(0, width, height / 3.0F, 0.5F, ColorManager.WHITE.getARGB());
 		Gui.drawHorizontalLine(0, width, height - (height / 3.0F), 0.5F, ColorManager.WHITE.getARGB());
 		
-		final float zBackup = zLevel;
-		
-		zLevel = 200.0F;
-		
 		for (IRenderer renderer: renderers.keySet()) {
 			ScreenPosition pos = renderers.get(renderer);
 			
@@ -67,8 +63,6 @@ public class GuiModPositioning extends GuiScreen {
 			
 			drawRendererPointer(renderer, ColorManager.BLACK.getARGB(), 5, 5);
 		}
-		
-		zLevel = zBackup;
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		
