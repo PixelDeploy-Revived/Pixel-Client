@@ -47,11 +47,15 @@ public class Bossbar extends ModDraggable {
 		
 		if (!castOptionValueIntoBoolean("hide")) {
 			if (castOptionValueIntoBoolean("showName")) {
-				height += 5;
+				height += font.FONT_HEIGHT;
 			}
 			
 			if (castOptionValueIntoBoolean("showHealth")) {
-				height += 1 + font.FONT_HEIGHT;
+				if (castOptionValueIntoBoolean("showName")) {
+					height++;
+				}
+				
+				height += 5;
 			}
 		}
 		
