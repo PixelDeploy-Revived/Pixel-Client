@@ -27,7 +27,7 @@ public class GuiModPositioning extends GuiScreen {
 				ScreenPosition pos = renderer.getPosition();
 				
 				if (pos == null) {
-					pos = ScreenPosition.fromRelativePosition(0.5, 0.5);
+					pos = ScreenPosition.fromRelativePosition(0, 0);
 				}
 				
 				renderers.put(renderer, pos);
