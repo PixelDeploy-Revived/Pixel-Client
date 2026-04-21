@@ -53,11 +53,11 @@ public class GuiModPositioning extends GuiScreen {
 		if (selectedRenderer.isPresent()) {
 			IRenderer renderer = selectedRenderer.get();
 			
-			if (!clickedRenderers.contains(renderer)) {
-				clickedRenderers.add(renderer);
-			}
-			
 			if (isRightButtonDown) {
+				if (!clickedRenderers.contains(renderer)) {
+					clickedRenderers.add(renderer);
+				}
+				
 				renderers.get(renderer).setAbsolute(mouseX - renderer.getWidth() / 2, mouseY - renderer.getHeight() / 2);
 			}
 			
