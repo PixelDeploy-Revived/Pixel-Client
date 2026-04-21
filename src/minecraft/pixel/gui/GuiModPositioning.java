@@ -6,8 +6,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Optional;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.gui.GuiScreen;
 import pixel.gui.hud.HUD;
 import pixel.gui.hud.IRenderer;
@@ -20,9 +18,6 @@ public class GuiModPositioning extends GuiScreen {
 	private Optional<IRenderer> selectedRenderer = Optional.empty();
 	
 	private boolean isRightButtonDown = false;
-	
-	private int offsetX;
-	private int offsetY;
 	
 	public GuiModPositioning(HUD hud) {
 		Collection<IRenderer> registeredRenderers = hud.getRegisteredRenderers();
