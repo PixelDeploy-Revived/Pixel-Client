@@ -1,8 +1,5 @@
 package pixel.mod.impl;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import pixel.gui.hud.ScreenPosition;
 import pixel.mod.ModDraggable;
 import pixel.mod.option.Brackets;

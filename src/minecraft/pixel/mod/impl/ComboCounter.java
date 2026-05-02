@@ -1,8 +1,5 @@
 package pixel.mod.impl;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import pixel.event.EventTarget;
 import pixel.event.impl.EntityAttackEvent;
 import pixel.event.impl.EntityDamageEvent;
