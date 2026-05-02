@@ -25,6 +25,7 @@ import pixel.mod.impl.HitColor;
 import pixel.mod.impl.HurtCam;
 import pixel.mod.impl.ItemPhysics;
 import pixel.mod.impl.KeyStrokes;
+import pixel.mod.impl.MemoryUsage;
 import pixel.mod.impl.Menu;
 import pixel.mod.impl.Nametags;
 import pixel.mod.impl.OldVisuals;
@@ -69,7 +70,8 @@ public class ModHandler {
 			new TimeChanger(),
 			new Clock(),
 			new ComboCounter(),
-			new DayCounter()
+			new DayCounter(),
+			new MemoryUsage()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
