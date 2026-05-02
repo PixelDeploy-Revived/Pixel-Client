@@ -13,6 +13,7 @@ import pixel.mod.impl.Bossbar;
 import pixel.mod.impl.CPS;
 import pixel.mod.impl.Chat;
 import pixel.mod.impl.Clock;
+import pixel.mod.impl.ComboCounter;
 import pixel.mod.impl.Coordinates;
 import pixel.mod.impl.Direction;
 import pixel.mod.impl.Extra;
@@ -65,7 +66,8 @@ public class ModHandler {
 			new Bossbar(),
 			new HitColor(),
 			new TimeChanger(),
-			new Clock()
+			new Clock(),
+			new ComboCounter()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

@@ -74,6 +74,7 @@ import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.LockCode;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
+import pixel.event.impl.EntityAttackEvent;
 import pixel.mod.ModHandler;
 import pixel.mod.impl.Particles;
 
@@ -1308,6 +1309,8 @@ public abstract class EntityPlayer extends EntityLivingBase
     {
         if (targetEntity.canAttackWithItem())
         {
+        	new EntityAttackEvent(targetEntity).call();
+        	
             if (!targetEntity.hitByEntity(this))
             {
                 float f = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();

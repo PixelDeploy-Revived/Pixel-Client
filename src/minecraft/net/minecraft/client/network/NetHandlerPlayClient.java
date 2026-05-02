@@ -207,6 +207,7 @@ import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.storage.MapData;
+import pixel.event.impl.EntityDamageEvent;
 import pixel.gui.GuiDisconnected;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
@@ -1036,6 +1037,8 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
         if (entity != null)
         {
+        	new EntityDamageEvent(entity).call();
+        	
             if (packetIn.getOpCode() == 21)
             {
                 this.gameController.getSoundHandler().playSound(new GuardianSound((EntityGuardian)entity));
