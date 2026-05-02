@@ -36,7 +36,7 @@ public class ComboCounter extends ModDraggable {
 	
 	@Override
 	public int getWidth() {
-		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0 combo"));
+		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0 combos"));
 	}
 	
 	@Override
@@ -50,7 +50,7 @@ public class ComboCounter extends ModDraggable {
 			combo = 0;
 		}
 		
-		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(combo + " combo");
+		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(combo + " combos");
 		
 		if (castOptionValueIntoBoolean("drawBackground")) {
 			drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB());
@@ -67,7 +67,7 @@ public class ComboCounter extends ModDraggable {
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
-		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0 combo");
+		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0 combos");
 		
 		if (castOptionValueIntoBoolean("drawBackground")) {
 			drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB());
