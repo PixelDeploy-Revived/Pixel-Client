@@ -59,7 +59,7 @@ public class Clock extends ModDraggable {
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
-		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
+		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("12:00");
 		
 		if (castOptionValueIntoBoolean("drawBackground")) {
 			drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB());
