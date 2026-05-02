@@ -15,6 +15,7 @@ import pixel.mod.impl.Chat;
 import pixel.mod.impl.Clock;
 import pixel.mod.impl.ComboCounter;
 import pixel.mod.impl.Coordinates;
+import pixel.mod.impl.DayCounter;
 import pixel.mod.impl.Direction;
 import pixel.mod.impl.Extra;
 import pixel.mod.impl.FPS;
@@ -67,7 +68,8 @@ public class ModHandler {
 			new HitColor(),
 			new TimeChanger(),
 			new Clock(),
-			new ComboCounter()
+			new ComboCounter(),
+			new DayCounter()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
