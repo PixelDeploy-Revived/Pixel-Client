@@ -16,7 +16,8 @@ public class Extra extends Mod {
 				new ModOption("hotbarScrolling", true, new InGuiSettings("Hotbar Scrolling")),
 				new ModOption("showCrosshairInF3", true, new InGuiSettings("Show Crosshair In F3")),
 				new ModOption("achievementNotifications", true, new InGuiSettings("Achievement Notifications")),
-				new ModOption("leftHand", false, new InGuiSettings("Left Hand"))
+				new ModOption("leftHand", false, new InGuiSettings("Left Hand")),
+				new ModOption("fireLayer", true, new InGuiSettings("Fire Layer"))
 				);
 	}
 	
