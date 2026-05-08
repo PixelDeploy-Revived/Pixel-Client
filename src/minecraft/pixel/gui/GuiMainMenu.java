@@ -3,6 +3,8 @@ package pixel.gui;
 import java.io.IOException;
 
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiButtonLanguage;
+import net.minecraft.client.gui.GuiLanguage;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
@@ -39,6 +41,8 @@ public class GuiMainMenu extends GuiScreen {
 		buttonList.add(new GuiButton(1, width - 120 - 100 + 120 / 2 + 100 / 2, height / 2 - 4 / 2, 100, 20, I18n.format("menu.multiplayer")));
 		buttonList.add(new GuiButton(2, width - 120 - 100 + 120 / 2 + 100 / 2, height / 2 + 4 / 2 + 20, 100, 20, I18n.format("menu.options")));
 		buttonList.add(new GuiButton(3, width - 120 - 100 + 120 / 2 + 100 / 2, height / 2 + 4 / 2 + 20 + 4 + 20, 100, 20, I18n.format("menu.quit")));
+		buttonList.add(new GuiButtonLanguage(4, width - 120 - 20 + 120 / 2 + 20 / 2 - 4 / 2 - 20 / 2, height / 2 + 4 / 2 + 20 + 4 + 20 + 4 + 20));
+		buttonList.add(new GuiButtonAlts(5, width - 120 - 20 + 120 / 2 + 20 / 2 + 4 / 2 + 20 / 2, height / 2 + 4 / 2 + 20 + 4 + 20 + 4 + 20));
 		
 		Pixel.getInstance().getDiscord().update("In Main Menu", "Idle");
 	}
@@ -57,6 +61,12 @@ public class GuiMainMenu extends GuiScreen {
 			break;
 		case 3:
 			mc.shutdown();
+			break;
+		case 4:
+			mc.displayGuiScreen(new GuiLanguage(this, mc.gameSettings, mc.getLanguageManager()));
+			break;
+		case 5:
+			mc.displayGuiScreen(new GuiAltManager(this));
 		}
 	}
 }
