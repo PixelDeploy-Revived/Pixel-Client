@@ -8,6 +8,7 @@ import java.util.Map;
 
 import pixel.gui.hud.HUD;
 import pixel.mod.impl.ArmorStatus;
+import pixel.mod.impl.BPS;
 import pixel.mod.impl.BlockOverlay;
 import pixel.mod.impl.Bossbar;
 import pixel.mod.impl.CPS;
@@ -73,7 +74,8 @@ public class ModHandler {
 			new ComboCounter(),
 			new DayCounter(),
 			new MemoryUsage(),
-			new PotsCounter()
+			new PotsCounter(),
+			new BPS()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
