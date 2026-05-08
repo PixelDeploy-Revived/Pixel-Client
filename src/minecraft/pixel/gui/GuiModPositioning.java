@@ -66,8 +66,8 @@ public class GuiModPositioning extends GuiScreen {
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		
-		Gui.drawText(fontRendererObj, "Mod Positioning", (width - fontRendererObj.getStringWidth("Mod Positioning")) / 2, 15, ColorManager.WHITE.getARGB(), true, false);
-		Gui.drawText(fontRendererObj, "Use Right Click To Move", (width - fontRendererObj.getStringWidth("Use Right Click To Move")) / 2, 27, ColorManager.WHITE.getARGB(), true, false);
+		drawCenteredString(fontRendererObj, "Mod Positioning", width / 2, 15, ColorManager.WHITE.getARGB());
+		drawCenteredString(fontRendererObj, "Use Right Click To Move", width / 2, 27, ColorManager.WHITE.getARGB());
 	}
 	
 	@Override
