@@ -34,7 +34,7 @@ public class ReachDisplay extends ModDraggable {
 	
 	@Override
 	public int getWidth() {
-		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0.00 blocks"));
+		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0,00 blocks"));
 	}
 	
 	@Override
@@ -65,7 +65,7 @@ public class ReachDisplay extends ModDraggable {
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
-		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0.00 blocks");
+		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0,00 blocks");
 		
 		if (castOptionValueIntoBoolean("drawBackground")) {
 			drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB());

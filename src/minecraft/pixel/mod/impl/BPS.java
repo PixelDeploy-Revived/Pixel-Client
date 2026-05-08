@@ -31,7 +31,7 @@ public class BPS extends ModDraggable {
 	
 	@Override
 	public int getWidth() {
-		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0.00 m/s"));
+		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0,00 m/s"));
 	}
 	
 	@Override
@@ -62,7 +62,7 @@ public class BPS extends ModDraggable {
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
-		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0.00 m/s");
+		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0,00 m/s");
 		
 		if (castOptionValueIntoBoolean("drawBackground")) {
 			drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB());
