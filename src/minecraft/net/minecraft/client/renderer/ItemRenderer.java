@@ -31,6 +31,7 @@ import net.optifine.DynamicLights;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
 import pixel.mod.ModHandler;
+import pixel.mod.impl.Extra;
 import pixel.mod.impl.OldVisuals;
 
 import org.lwjgl.opengl.GL11;
@@ -391,6 +392,11 @@ public class ItemRenderer
             this.rotateWithPlayerRotations((EntityPlayerSP)abstractclientplayer, partialTicks);
             GlStateManager.enableRescaleNormal();
             GlStateManager.pushMatrix();
+            
+            if (ModHandler.get(Extra.class).isEnabled() && ModHandler.get(Extra.class).castOptionValueIntoBoolean("leftHand")) {
+            	GlStateManager.scale(-1.0F, 1.0F, 1.0F);
+            	GlStateManager.disableCull();
+            }
 
             if (this.itemToRender != null)
             {
