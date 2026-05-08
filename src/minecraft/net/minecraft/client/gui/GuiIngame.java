@@ -158,7 +158,9 @@ public class GuiIngame extends Gui
 
         if (this.mc.gameSettings.thirdPersonView == 0 && itemstack != null && itemstack.getItem() == Item.getItemFromBlock(Blocks.pumpkin))
         {
-            this.renderPumpkinOverlay(scaledresolution);
+        	if (!ModHandler.get(Extra.class).isEnabled() || ModHandler.get(Extra.class).isEnabled() && ModHandler.get(Extra.class).castOptionValueIntoBoolean("pumpkinOverlay")) {
+            	this.renderPumpkinOverlay(scaledresolution);
+            }
         }
 
         if (!this.mc.thePlayer.isPotionActive(Potion.confusion))

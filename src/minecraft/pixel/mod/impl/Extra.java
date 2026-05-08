@@ -17,7 +17,8 @@ public class Extra extends Mod {
 				new ModOption("showCrosshairInF3", true, new InGuiSettings("Show Crosshair In F3")),
 				new ModOption("achievementNotifications", true, new InGuiSettings("Achievement Notifications")),
 				new ModOption("leftHand", false, new InGuiSettings("Left Hand")),
-				new ModOption("fireLayer", true, new InGuiSettings("Fire Layer"))
+				new ModOption("fireLayer", true, new InGuiSettings("Fire Layer")),
+				new ModOption("pumpkinOverlay", true, new InGuiSettings("Pumpkin Overlay"))
 				);
 	}
 	
