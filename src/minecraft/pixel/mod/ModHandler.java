@@ -35,6 +35,7 @@ import pixel.mod.impl.Particles;
 import pixel.mod.impl.Ping;
 import pixel.mod.impl.PotionEffects;
 import pixel.mod.impl.PotsCounter;
+import pixel.mod.impl.ReachDisplay;
 import pixel.mod.impl.Scoreboard;
 import pixel.mod.impl.TabOverlay;
 import pixel.mod.impl.TimeChanger;
@@ -75,7 +76,8 @@ public class ModHandler {
 			new DayCounter(),
 			new MemoryUsage(),
 			new PotsCounter(),
-			new BPS()
+			new BPS(),
+			new ReachDisplay()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	
