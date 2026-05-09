@@ -1,5 +1,8 @@
 package pixel;
 
+import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
 import org.lwjgl.LWJGLException;
 
 import net.minecraft.client.Minecraft;
@@ -34,6 +37,9 @@ public class Pixel {
 	
 	private static FileManager modsFile;
 	private static FileManager cosmeticsFile;
+	private static FileManager altsFile;
+	
+	public ArrayList<String> accountUsernames = new ArrayList<String>();
 	
 	public static final Pixel getInstance() {
 		return instance;
@@ -90,6 +96,10 @@ public class Pixel {
 		return cosmeticsFile;
 	}
 	
+	public static final FileManager getAltsFile() {
+		return altsFile;
+	}
+	
 	public final Discord getDiscord() {
 		return discord;
 	}
@@ -97,6 +107,17 @@ public class Pixel {
 	public void init() {		
 		modsFile = FileManager.create("mods");
 		cosmeticsFile = FileManager.create("cosmetics");
+		altsFile = FileManager.create("alts");
+		
+		if (altsFile.containsKey("usernames")) {
+			JSONArray usernames = (JSONArray) altsFile.get("usernames");
+			
+			for (Object username : usernames) {
+				accountUsernames.add((String) username);
+			}
+		} else {
+			altsFile.put("usernames", new JSONArray());
+		}
 		
 		discord.start();
 		
