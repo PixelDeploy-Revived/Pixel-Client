@@ -1,6 +1,7 @@
 package pixel.mod.impl;
 
 import pixel.event.EventTarget;
+import pixel.event.impl.EntityAttackEvent;
 import pixel.event.impl.EntityDamageEvent;
 import pixel.gui.hud.ScreenPosition;
 import pixel.mod.ModDisplayBase;
@@ -23,7 +24,7 @@ public class ReachDisplay extends ModDisplayBase {
 	}
 	
 	@EventTarget
-	public void onEntityDamage(EntityDamageEvent event) {
+	public void onEntityAttack(EntityAttackEvent event) {
 		range = mc.thePlayer.getDistanceToEntity(event.getEntity());
 		lastHit = System.currentTimeMillis();
 	}
