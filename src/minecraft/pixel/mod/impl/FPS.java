@@ -5,7 +5,7 @@ import pixel.mod.ModDisplayBase;
 
 public class FPS extends ModDisplayBase {
 	public FPS() {
-		super("60 FPS");
+		super(true, "60 FPS");
 	}
 
 	@Override

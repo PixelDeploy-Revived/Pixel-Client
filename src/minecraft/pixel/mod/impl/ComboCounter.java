@@ -8,7 +8,7 @@ import pixel.mod.ModDisplayBase;
 
 public class ComboCounter extends ModDisplayBase {
 	public ComboCounter() {
-		super("0 combos");
+		super(false, "0 combos");
 	}
 	
 	private int targetId;

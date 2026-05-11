@@ -5,7 +5,7 @@ import pixel.mod.ModDisplayBase;
 
 public class HealthIndicator extends ModDisplayBase {
 	public HealthIndicator() {
-		super("10.0 hearts");
+		super(false, "10.0 hearts");
 	}
 
 	@Override

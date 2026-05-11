@@ -13,7 +13,7 @@ import pixel.mod.option.ModOption.InGuiSettings;
 
 public class CPS extends ModDisplayBase {
 	public CPS() {
-		super("0 CPS", new ModOption("showRightCPS", false, new InGuiSettings("Show Right CPS")));
+		super(true, "0 CPS", new ModOption("showRightCPS", false, new InGuiSettings("Show Right CPS")));
 	}
 	
 	private List<Long> leftClicks = new ArrayList<>();

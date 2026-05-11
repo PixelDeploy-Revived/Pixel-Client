@@ -5,7 +5,7 @@ import pixel.mod.ModDisplayBase;
 
 public class MemoryUsage extends ModDisplayBase {
 	public MemoryUsage() {
-		super("Mem: 0%");
+		super(false, "Mem: 0%");
 	}
 	
 	@Override

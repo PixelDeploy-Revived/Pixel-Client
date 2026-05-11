@@ -7,7 +7,7 @@ import pixel.mod.ModDisplayBase;
 
 public class ReachDisplay extends ModDisplayBase {
 	public ReachDisplay() {
-		super("0,00 blocks");
+		super(false, "0,00 blocks");
 	}
 	
 	private float range = 0.0F;

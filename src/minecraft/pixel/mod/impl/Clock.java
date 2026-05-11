@@ -8,7 +8,7 @@ import pixel.mod.ModDisplayBase;
 
 public class Clock extends ModDisplayBase {
 	public Clock() {
-		super("12:00");
+		super(false, "12:00");
 	}
 	
 	@Override

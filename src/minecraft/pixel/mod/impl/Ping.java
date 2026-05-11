@@ -6,7 +6,7 @@ import pixel.mod.ModDisplayBase;
 
 public class Ping extends ModDisplayBase {
 	public Ping() {
-		super("-1 ms");
+		super(false, "-1 ms");
 	}
 	
 	@Override

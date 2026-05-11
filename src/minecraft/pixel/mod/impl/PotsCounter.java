@@ -6,7 +6,7 @@ import pixel.mod.ModDisplayBase;
 
 public class PotsCounter extends ModDisplayBase {
 	public PotsCounter() {
-		super("0 pots");
+		super(false, "0 pots");
 	}
 	
 	@Override

@@ -14,8 +14,8 @@ import pixel.util.ColorManager;
 public abstract class ModDisplayBase extends ModDraggable {
 	protected String dummyText;
 	
-	public ModDisplayBase(String dummyText, ModOption... options) {
-		super(false, 0, 0);
+	public ModDisplayBase(boolean enabled, String dummyText, ModOption... options) {
+		super(enabled, 0, 0);
 		
 		this.dummyText = dummyText;
 		

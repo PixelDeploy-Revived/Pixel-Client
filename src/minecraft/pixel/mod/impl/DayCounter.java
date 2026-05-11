@@ -5,7 +5,7 @@ import pixel.mod.ModDisplayBase;
 
 public class DayCounter extends ModDisplayBase {
 	public DayCounter() {
-		super("365 days");
+		super(false, "365 days");
 	}
 	
 	@Override

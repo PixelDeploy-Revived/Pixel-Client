@@ -5,7 +5,7 @@ import pixel.mod.ModDisplayBase;
 
 public class BPS extends ModDisplayBase {
 	public BPS() {
-		super("0,00 m/s");
+		super(false, "0,00 m/s");
 	}
 	
 	private float blocks;
