@@ -26,11 +26,11 @@ public class PotionEffects extends ModDraggable {
 		super(true);
 		
 		loadOptions(
-				new ModOption("durationTextShadow", true, new InGuiSettings("Duration Text Shadow")),
 				new ModOptionColor("durationTextColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Duration Text Color", false, true)),
+				new ModOption("durationTextShadow", true, new InGuiSettings("Duration Text Shadow")),
 				new ModOption("showName", true, new InGuiSettings("Show Name")),
-				new ModOption(new ModOptionParent("showName"), "nameTextShadow", true, new InGuiSettings("Name Text Shadow")),
 				new ModOptionColor(new ModOptionParent("showName"), "nameTextColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Name Text Color", false, true)),
+				new ModOption(new ModOptionParent("showName"), "nameTextShadow", true, new InGuiSettings("Name Text Shadow")),
 				new ModOption("showIcon", true, new InGuiSettings("Show Icon")),
 				new ModOption("blink", true, new InGuiSettings("Blink")),
 				new ModOptionInt(new ModOptionParent("blink"), "blinkStart", 10, 5, 30, new InGuiSettings("Start blinking")),

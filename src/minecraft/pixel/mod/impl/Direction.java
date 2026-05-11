@@ -16,8 +16,8 @@ public class Direction extends ModDraggable {
 		super(false);
 		
 		loadOptions(
-				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
 				new ModOptionColor("textColor", ColorManager.GRAY.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),
+				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
 				new ModOption("markedFacingTextShadow", true, new InGuiSettings("Marked Facing Text Shadow")),
 				new ModOptionColor("markedFacingTextColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Marked Facing Text Color", false, true)),
 				new ModOptionColor("backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),

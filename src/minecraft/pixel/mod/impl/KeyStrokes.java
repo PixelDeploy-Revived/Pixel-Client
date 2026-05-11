@@ -20,10 +20,10 @@ public class KeyStrokes extends ModDraggable {
 		super(true);
 		
 		loadOptions(
-				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
-				new ModOption("textShadow.pressed", true, new InGuiSettings("Text Shadow (Pressed)")),
 				new ModOptionColor("textColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),
+				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
 				new ModOptionColor("textColor.pressed", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color (Pressed)", false, true)),
+				new ModOption("textShadow.pressed", true, new InGuiSettings("Text Shadow (Pressed)")),
 				new ModOptionColor("backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
 				new ModOptionColor("backgroundColor.pressed", ColorManager.WHITE_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color (Pressed)", true, false)),
 				new ModOption("drawBorder", false, new InGuiSettings("Border")),

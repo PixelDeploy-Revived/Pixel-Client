@@ -17,9 +17,9 @@ public class ArmorStatus extends ModDraggable {
 		super(true);
 		
 		loadOptions(
-				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
 				new ModOptionColor("textColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),
 				new ModOption("dynamicColors", false, new InGuiSettings("Dynamic Colors")),
+				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
 				new ModOption("showPercentage", false, new InGuiSettings("Show Percentage")),
 				new ModOption("showDamage", true, new InGuiSettings("Show Damage")),
 				new ModOption(new ModOptionParent("showDamage"), "showMaxDamage", false, new InGuiSettings("Show Max Damage")),
