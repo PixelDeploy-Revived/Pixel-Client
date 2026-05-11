@@ -15,7 +15,7 @@ public class Coordinates extends ModDraggable {
 	private int RECT_GAP = 6;
 	
 	public Coordinates() {
-		super(false, 0, 0);
+		super(false);
 				
 		loadOptions(
 				new ModOptionColor("textColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),

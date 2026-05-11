@@ -15,7 +15,7 @@ public abstract class ModDisplayBase extends ModDraggable {
 	protected String dummyText;
 	
 	public ModDisplayBase(boolean enabled, String dummyText, ModOption... options) {
-		super(enabled, 0, 0);
+		super(enabled);
 		
 		this.dummyText = dummyText;
 		

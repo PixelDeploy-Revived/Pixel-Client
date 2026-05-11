@@ -13,7 +13,7 @@ import pixel.util.ColorManager;
 
 public class Bossbar extends ModDraggable {
 	public Bossbar() {
-		super(false, 0, 0);
+		super(false);
 		
 		loadOptions(
 				new ModOption("hide", false, new InGuiSettings("Hide")),

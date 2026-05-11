@@ -19,7 +19,7 @@ public class PackDisplay extends ModDraggable {
 	private Pack defaultPack = new Pack(new ResourceLocation("pixel/pack.png"), "Default", "The default look of Minecraft");
 	
 	public PackDisplay() {
-		super(false, 0, 0);
+		super(false);
 				
 		loadOptions(
 				new ModOptionColor("nameTextColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Name Text Color", false, true)),

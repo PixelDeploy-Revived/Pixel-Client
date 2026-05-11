@@ -13,7 +13,7 @@ import pixel.util.ColorManager;
 
 public class Direction extends ModDraggable {
 	public Direction() {
-		super(false, 0, 0);
+		super(false);
 		
 		loadOptions(
 				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),

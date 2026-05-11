@@ -19,7 +19,7 @@ public class ToggleSprintSneak extends ModDraggable {
 	private int RECT_GAP = 10;
 	
 	public ToggleSprintSneak() {
-		super(true, 0, 0);
+		super(true);
 				
 		loadOptions(
 				new ModOption("toggleSprint", true, new InGuiSettings("Toggle Sprint")),

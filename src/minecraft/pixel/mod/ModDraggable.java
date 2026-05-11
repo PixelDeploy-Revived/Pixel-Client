@@ -12,10 +12,10 @@ import pixel.gui.hud.ScreenPosition;
 public abstract class ModDraggable extends Mod implements IRenderer {
 	protected ScreenPosition pos;
 	
-	public ModDraggable(boolean enabled, double x, double y) {
+	public ModDraggable(boolean enabled) {
 		super(enabled);
 		
-		setPosition(ScreenPosition.fromRelativePosition((double) file.safeGet("x", x), (double) file.safeGet("y", y)));
+		setPosition(ScreenPosition.fromRelativePosition((double) file.safeGet("x", 0), (double) file.safeGet("y", 0)));
 	}
 	
 	public void setPosition(ScreenPosition pos) {

@@ -17,7 +17,7 @@ import pixel.util.ColorManager;
 
 public class KeyStrokes extends ModDraggable {
 	public KeyStrokes() {
-		super(true, 0, 0);
+		super(true);
 		
 		loadOptions(
 				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),

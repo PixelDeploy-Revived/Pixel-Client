@@ -22,7 +22,7 @@ import pixel.util.ColorManager;
 
 public class Scoreboard extends ModDraggable {
 	public Scoreboard() {
-		super(false, 0, 0);
+		super(false);
 		
 		loadOptions(
 				new ModOption("show", true, new InGuiSettings("Show")),

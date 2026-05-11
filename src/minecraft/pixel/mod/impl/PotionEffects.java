@@ -23,7 +23,7 @@ public class PotionEffects extends ModDraggable {
 	private List<PotionEffect> dummyPotionEffects = Arrays.asList(new PotionEffect(Potion.moveSpeed.getId(), 20 * 60, 3), new PotionEffect(Potion.damageBoost.getId(), 20, 3));
 	
 	public PotionEffects() {
-		super(true, 0, 0);
+		super(true);
 		
 		loadOptions(
 				new ModOption("durationTextShadow", true, new InGuiSettings("Duration Text Shadow")),
