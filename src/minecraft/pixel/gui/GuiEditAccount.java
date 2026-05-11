@@ -50,7 +50,7 @@ public class GuiEditAccount extends GuiScreen {
 			actionPerformed(buttonEdit);
 		}
 		
-		buttonEdit.enabled = !textFieldUsername.getText().isEmpty();
+		buttonEdit.enabled = textFieldUsername.getText().matches("^[a-zA-Z0-9_]{3,16}$");
 	}
 	
 	@Override
@@ -94,7 +94,7 @@ public class GuiEditAccount extends GuiScreen {
 		textFieldUsername.setMaxStringLength(16);
 		textFieldUsername.setFocused(true);
 		
-		buttonEdit.enabled = !textFieldUsername.getText().isEmpty();
+		buttonEdit.enabled = textFieldUsername.getText().matches("^[a-zA-Z0-9_]{3,16}$");
 	}
 	
 	@Override

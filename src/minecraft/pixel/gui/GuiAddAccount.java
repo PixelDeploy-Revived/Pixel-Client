@@ -45,7 +45,7 @@ public class GuiAddAccount extends GuiScreen {
 			actionPerformed(buttonAdd);
 		}
 		
-		buttonAdd.enabled = !textFieldUsername.getText().isEmpty() && !textFieldUsername.getText().contains(" ");
+		buttonAdd.enabled = textFieldUsername.getText().matches("^[a-zA-Z0-9_]{3,16}$");
 	}
 	
 	@Override
@@ -84,7 +84,7 @@ public class GuiAddAccount extends GuiScreen {
 		textFieldUsername.setMaxStringLength(16);
 		textFieldUsername.setFocused(true);
 		
-		buttonAdd.enabled = !textFieldUsername.getText().isEmpty();
+		buttonAdd.enabled = textFieldUsername.getText().matches("^[a-zA-Z0-9_]{3,16}$");
 	}
 	
 	@Override
