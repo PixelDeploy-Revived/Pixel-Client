@@ -34,7 +34,8 @@ public class TabOverlay extends Mod {
 				new ModOption("showPlayerHeads", true, new InGuiSettings("Show Player Heads")),
 				new ModOption("hidePing", false, new InGuiSettings("Hide Ping")),
 				new ModOption(new ModOptionParent("hidePing", false), "pingAsText", false, new InGuiSettings("Ping As Text")),
-				new ModOptionColor(new ModOptionParent("pingAsText"), "pingColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Ping Text Color", false, true)),
+				new ModOption(new ModOptionParent("pingAsText"), "dynamicColors", true, new InGuiSettings("Dynamic Colors")),
+				new ModOptionColor(new ModOptionParent("dynamicColors", false), "pingColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Ping Text Color", false, true)),
 				new ModOption("showHeader", true, new InGuiSettings("Show Header")),
 				new ModOptionColor(new ModOptionParent("showHeader"), "headerBackgroundColor", ColorManager.BLACK_80.getARGB(), false, new ModOptionColor.InGuiSettings("Header Background Color", true, false)),
 				new ModOption("showFooter", true, new InGuiSettings("Show Footer")),
@@ -206,9 +207,25 @@ public class TabOverlay extends Mod {
 	
 	public void writePing(int p_175245_1_, int p_175245_2_, int p_175245_3_, NetworkPlayerInfo networkPlayerInfoIn) {
 		int ping = networkPlayerInfoIn.getResponseTime();
-		
 		String pingText = String.valueOf(ping);
+		int pingColor = getOptionColor("pingColor").getARGB();
 		
-		drawText(pingText, p_175245_2_ + p_175245_1_ - font.getStringWidth(pingText), p_175245_3_, getOptionColor("pingColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("pingColor").isChromaEnabled());
+		if (castOptionValueIntoBoolean("dynamicColors")) {
+			if (ping > 300) {
+				pingColor = ColorManager.DEFAULT_DARK_RED.getARGB();
+			} else if (ping > 200) {
+				pingColor = ColorManager.DEFAULT_RED.getARGB();
+			} else if (ping > 150) {
+				pingColor = ColorManager.DEFAULT_GOLD.getARGB();
+			} else if (ping > 100) {
+				pingColor = ColorManager.DEFAULT_YELLOW.getARGB();
+			} else if (ping > 50) {
+				pingColor = ColorManager.DEFAULT_DARK_GREEN.getARGB();
+			} else {
+				pingColor = ColorManager.DEFAULT_GREEN.getARGB();
+			}
+		}
+		
+		drawText(pingText, p_175245_2_ + p_175245_1_ - font.getStringWidth(pingText), p_175245_3_, pingColor, castOptionValueIntoBoolean("textShadow"), getOptionColor("pingColor").isChromaEnabled());
 	}
 }

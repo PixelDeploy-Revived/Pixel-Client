@@ -19,6 +19,7 @@ public class ArmorStatus extends ModDraggable {
 		loadOptions(
 				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
 				new ModOptionColor("textColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),
+				new ModOption("dynamicColors", false, new InGuiSettings("Dynamic Colors")),
 				new ModOption("showPercentage", false, new InGuiSettings("Show Percentage")),
 				new ModOption("showDamage", true, new InGuiSettings("Show Damage")),
 				new ModOption(new ModOptionParent("showDamage"), "showMaxDamage", false, new InGuiSettings("Show Max Damage")),
@@ -142,6 +143,7 @@ public class ArmorStatus extends ModDraggable {
 			String text = "";
 			int damage = itemStack.getItemDamage();
 			int maxDamage = itemStack.getMaxDamage();
+			double damagePercentage = ((maxDamage - damage) / (double) maxDamage) * 100.0D;
 			
 			if (castOptionValueIntoBoolean("showPercentage")) {				
 				text = String.valueOf(((maxDamage - damage) / maxDamage) * 100) + "%";
@@ -154,8 +156,23 @@ public class ArmorStatus extends ModDraggable {
 			}
 			
 			int damageX = castOptionValueIntoBoolean("reverse") ? pos.getAbsoluteX() + getWidth() - font.getStringWidth(text) - 16 - 2 : pos.getAbsoluteX() + 16 + 2;
+			int textColor = getOptionColor("textColor").getARGB();
 			
-			drawText(text, damageX, pos.getAbsoluteY() + offsetY + 5, getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
+			if (castOptionValueIntoBoolean("dynamicColors")) {				
+				if (damagePercentage <= 10) {
+			        textColor = ColorManager.DEFAULT_DARK_RED.getARGB();
+			    } else if (damagePercentage <= 25) {
+			    	textColor = ColorManager.DEFAULT_RED.getARGB();
+			    } else if (damagePercentage <= 40) {
+			    	textColor = ColorManager.DEFAULT_GOLD.getARGB();
+			    } else if (damagePercentage <= 60) {
+			    	textColor = ColorManager.DEFAULT_YELLOW.getARGB();
+			    } else if (damagePercentage <= 80) {
+			    	textColor = ColorManager.DEFAULT_GREEN.getARGB();
+			    }
+			}
+			
+			drawText(text, damageX, pos.getAbsoluteY() + offsetY + 5, textColor, castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
 		}
 		
 		GlStateManager.popMatrix();
