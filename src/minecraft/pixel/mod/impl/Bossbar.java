@@ -2,6 +2,7 @@ package pixel.mod.impl;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.boss.BossStatus;
 import pixel.gui.hud.ScreenPosition;
 import pixel.mod.ModDraggable;
@@ -30,7 +31,7 @@ public class Bossbar extends ModDraggable {
 		
 		if (castOptionValueIntoBoolean("show")) {
 			if (castOptionValueIntoBoolean("showName")) {
-				width = font.getStringWidth(BossStatus.bossName != null && BossStatus.statusBarTime > 0 ? BossStatus.bossName : "Ender Dragon");
+				width = font.getStringWidth(BossStatus.bossName != null && BossStatus.statusBarTime > 0 ? BossStatus.bossName : I18n.format("entity.EnderDragon.name", new Object[0]));
 			}
 			
 			if (castOptionValueIntoBoolean("showHealth")) {
@@ -67,7 +68,7 @@ public class Bossbar extends ModDraggable {
 		if (castOptionValueIntoBoolean("show") && BossStatus.bossName != null && BossStatus.statusBarTime > 0) {
 			BossStatus.statusBarTime--;
 			
-			this.renderBossbar(pos, BossStatus.healthScale, BossStatus.bossName);
+			renderBossbar(pos, BossStatus.healthScale, BossStatus.bossName);
 		}
 	}
 	
@@ -75,14 +76,14 @@ public class Bossbar extends ModDraggable {
 	public void renderDummy(ScreenPosition pos) {
 		if (castOptionValueIntoBoolean("show")) {
 			float bossHealthScale = 1.0F;
-			String bossName = "Ender Dragon";
+			String bossName = I18n.format("entity.EnderDragon.name", new Object[0]);
 			
 			if (BossStatus.bossName != null && BossStatus.statusBarTime > 0) {
 				bossHealthScale = BossStatus.healthScale;
 				bossName = BossStatus.bossName;
 			}
 			
-			this.renderBossbar(pos, bossHealthScale, bossName);
+			renderBossbar(pos, bossHealthScale, bossName);
 		}
 	}
 	
