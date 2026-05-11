@@ -102,7 +102,7 @@ public class GuiIngame extends Gui
 
     /** The time that the title take to fade out */
     private int titleFadeOut;
-    private int playerHealth = 0;
+    public int playerHealth = 0;
     private int lastPlayerHealth = 0;
 
     /** The last recorded system time */
