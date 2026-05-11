@@ -108,7 +108,7 @@ public class PotionEffects extends ModDraggable {
 	private static String getPotionName(PotionEffect potionEffect) {
 		String potionName = I18n.format(potionEffect.getEffectName());
 		
-		if (potionEffect.getAmplifier() < 4) {
+		if (potionEffect.getAmplifier() > 0 && potionEffect.getAmplifier() < 4) {
 			potionName = potionName + " " + I18n.format("enchantment.level." + String.valueOf(potionEffect.getAmplifier() + 1));
 		}
 		
