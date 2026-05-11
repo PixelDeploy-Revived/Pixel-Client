@@ -99,7 +99,7 @@ public class GuiAltManager extends GuiScreen {
 	
 	private class List extends GuiSlot {
 		public List(Minecraft mc, int width, int height) {
-			super(mc, width, height, 32, height - 64, 12);
+			super(mc, width, height, 32, height - 64, 14);
 		}
 		
 		@Override
@@ -121,7 +121,7 @@ public class GuiAltManager extends GuiScreen {
 		
 		@Override
 		protected int getContentHeight() {
-			return getSize() * 12;
+			return getSize() * 14;
 		}
 		
 		@Override
@@ -133,7 +133,7 @@ public class GuiAltManager extends GuiScreen {
 		protected void drawSlot(int entryID, int x, int y, int height, int mouseX, int mouseY) {
 			String username = Pixel.getInstance().accountUsernames.get(entryID);
 			
-			fontRendererObj.drawString(username, (width - 215) / 2, y, mc.session.getUsername().equals(username) ? ColorManager.DEFAULT_GREEN.getARGB() : ColorManager.WHITE.getARGB());
+			fontRendererObj.drawString(username, (width - 220) / 2 + 4, y + (14 - fontRendererObj.FONT_HEIGHT) / 2 - 1, mc.session.getUsername().equals(username) ? ColorManager.DEFAULT_GREEN.getARGB() : ColorManager.WHITE.getARGB());
 		}
 	}
 }
