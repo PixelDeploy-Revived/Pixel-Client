@@ -16,11 +16,11 @@ public class Bossbar extends ModDraggable {
 		super(false);
 		
 		loadOptions(
-				new ModOption("hide", false, new InGuiSettings("Hide")),
-				new ModOption(new ModOptionParent("hide", false), "showName", true, new InGuiSettings("Show Name")),
+				new ModOption("show", true, new InGuiSettings("Show")),
+				new ModOption(new ModOptionParent("show"), "showName", true, new InGuiSettings("Show Name")),
 				new ModOptionColor(new ModOptionParent("showName"), "textColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),
 				new ModOption(new ModOptionParent("showName"), "textShadow", true, new InGuiSettings("Text Shadow")),
-				new ModOption(new ModOptionParent("hide", false), "showHealth", true, new InGuiSettings("Show Health"))
+				new ModOption(new ModOptionParent("show"), "showHealth", true, new InGuiSettings("Show Health"))
 				);
 	}
 	
@@ -28,7 +28,7 @@ public class Bossbar extends ModDraggable {
 	public int getWidth() {
 		int width = 0;
 		
-		if (!castOptionValueIntoBoolean("hide")) {
+		if (castOptionValueIntoBoolean("show")) {
 			if (castOptionValueIntoBoolean("showName")) {
 				width = font.getStringWidth(BossStatus.bossName != null && BossStatus.statusBarTime > 0 ? BossStatus.bossName : "Ender Dragon");
 			}
@@ -45,7 +45,7 @@ public class Bossbar extends ModDraggable {
 	public int getHeight() {
 		int height = 0;
 		
-		if (!castOptionValueIntoBoolean("hide")) {
+		if (castOptionValueIntoBoolean("show")) {
 			if (castOptionValueIntoBoolean("showName")) {
 				height += font.FONT_HEIGHT;
 			}
@@ -64,7 +64,7 @@ public class Bossbar extends ModDraggable {
 	
 	@Override
 	public void render(ScreenPosition pos) {
-		if (!castOptionValueIntoBoolean("hide") && BossStatus.bossName != null && BossStatus.statusBarTime > 0) {
+		if (castOptionValueIntoBoolean("show") && BossStatus.bossName != null && BossStatus.statusBarTime > 0) {
 			BossStatus.statusBarTime--;
 			
 			this.renderBossbar(pos, BossStatus.healthScale, BossStatus.bossName);
@@ -73,7 +73,7 @@ public class Bossbar extends ModDraggable {
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
-		if (!castOptionValueIntoBoolean("hide")) {
+		if (castOptionValueIntoBoolean("show")) {
 			float bossHealthScale = 1.0F;
 			String bossName = "Ender Dragon";
 			
