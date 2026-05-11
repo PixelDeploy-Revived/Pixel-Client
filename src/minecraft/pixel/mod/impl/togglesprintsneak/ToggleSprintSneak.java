@@ -45,7 +45,13 @@ public class ToggleSprintSneak extends ModDraggable {
 
 	@Override
 	public int getWidth() {
-		return font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("Sprinting (Toggled)")) + (castOptionValueIntoBoolean("drawBackground") ? RECT_GAP : 0);
+		int width = font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("Sprinting (Toggled)"));
+		
+		if (castOptionValueIntoBoolean("drawBackground")) {
+			width += RECT_GAP;
+		}
+		
+		return width;
 	}
 
 	@Override
@@ -56,38 +62,30 @@ public class ToggleSprintSneak extends ModDraggable {
 	@Override
 	public void render(ScreenPosition pos) {
 	    if (castOptionValueIntoBoolean("showText") && mc.thePlayer.movementInput.getDisplayText() != "") {
-	    	String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(mc.thePlayer.movementInput.getDisplayText());
-	    	
-	    	if (castOptionValueIntoBoolean("drawBackground")) {	    		
-	    		drawRect(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB(), text, RECT_GAP);
-		    	
-		    	if (castOptionValueIntoBoolean("drawBorder")) {
-		    		drawBorder(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"), text, RECT_GAP);
-		    	}
-		    	
-				drawTextCentered(text, RECT_GAP, pos.getAbsoluteX(), pos.getAbsoluteY(), getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-	    	} else {
-			    drawTextAligned(text, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-	    	}
+	    	draw(pos, mc.thePlayer.movementInput.getDisplayText());
 	    }
 	}
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
 		if (castOptionValueIntoBoolean("showText")) {
-			String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("Sprinting (Toggled)");
-			
-			if (castOptionValueIntoBoolean("drawBackground")) {	    		
-				drawRect(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB(), text, RECT_GAP);
-		    	
-		    	if (castOptionValueIntoBoolean("drawBorder")) {
-		    		drawBorder(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"), text, RECT_GAP);
-		    	}
-		    	
-		    	drawTextCentered(text, RECT_GAP, pos.getAbsoluteX(), pos.getAbsoluteY(), getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-	    	} else {
-			    drawTextAligned(text, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-	    	}
+			draw(pos, "Sprinting (Toggled)");
 	    }
+	}
+	
+	private void draw(ScreenPosition pos, String text) {
+		String formattedText = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(text);
+		
+		if (castOptionValueIntoBoolean("drawBackground")) {	    		
+			drawRect(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB(), formattedText, RECT_GAP);
+	    	
+	    	if (castOptionValueIntoBoolean("drawBorder")) {
+	    		drawBorder(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"), formattedText, RECT_GAP);
+	    	}
+	    	
+	    	drawTextCentered(formattedText, RECT_GAP, pos.getAbsoluteX(), pos.getAbsoluteY(), getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
+    	} else {
+		    drawTextAligned(formattedText, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
+    	}
 	}
 }
