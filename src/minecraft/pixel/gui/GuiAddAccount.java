@@ -37,12 +37,18 @@ public class GuiAddAccount extends GuiScreen {
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
 		textFieldUsername.textboxKeyTyped(typedChar, keyCode);
 		
-		if (keyCode == 15) {
+		switch (keyCode) {
+		case Keyboard.KEY_ESCAPE:
+			mc.displayGuiScreen(prevGuiScreen);
+			break;
+		case Keyboard.KEY_TAB:
 			textFieldUsername.setFocused(!textFieldUsername.isFocused());
-		}
-		
-		if (keyCode == 28 || keyCode == 156) {
-			actionPerformed(buttonAdd);
+			break;
+		case Keyboard.KEY_RETURN:
+		case Keyboard.KEY_NUMPADENTER:
+			if (buttonAdd.enabled) {
+				actionPerformed(buttonAdd);
+			}
 		}
 		
 		buttonAdd.enabled = textFieldUsername.getText().matches("^[a-zA-Z0-9_]{3,16}$");

@@ -2,6 +2,8 @@ package pixel.gui;
 
 import java.io.IOException;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -36,7 +38,7 @@ public class GuiAltManager extends GuiScreen {
 		buttonList.add(buttonDelete = new GuiButton(4,   width / 2 - 50, height - 28, 100, 20, "Delete"));
 		buttonList.add(new GuiButton(0,  width / 2 + 4+  50, height - 28, 100, 20, I18n.format("gui.cancel", new Object[0])));
 		
-		buttonLogin.enabled = selectedIndex >= 0 && !mc.session.getUsername().equals(Pixel.getInstance().accountUsernames.get(selectedIndex));
+		buttonLogin.enabled = selectedIndex >= 0 && selectedIndex < Pixel.getInstance().accountUsernames.size() && !mc.session.getUsername().equals(Pixel.getInstance().accountUsernames.get(selectedIndex));
 		buttonEdit.enabled = buttonDelete.enabled = selectedIndex >= 0;
 		
 		accountList = new List(mc, width, height);
@@ -95,6 +97,44 @@ public class GuiAltManager extends GuiScreen {
 		drawCenteredString(fontRendererObj, "Currently logged in as " + mc.session.getUsername(), width / 2, 20, ColorManager.DEFAULT_GRAY.getARGB());
 		
 		super.drawScreen(mouseX, mouseY, partialTicks);
+	}
+	
+	@Override
+	protected void keyTyped(char typedChar, int keyCode) throws IOException {
+		switch (keyCode) {
+		case Keyboard.KEY_ESCAPE:
+			mc.displayGuiScreen(prevGuiScreen);
+			break;
+		case Keyboard.KEY_RETURN:
+		case Keyboard.KEY_NUMPADENTER:
+			if (buttonLogin.enabled) {
+				actionPerformed(buttonLogin);
+			}
+			break;
+		case Keyboard.KEY_SPACE:
+			if (buttonEdit.enabled) {
+				actionPerformed(buttonEdit);
+			}
+			break;
+		case Keyboard.KEY_UP:
+			if (selectedIndex > 0) {
+				selectedIndex--;
+				
+				initGui();
+			}
+			break;
+		case Keyboard.KEY_DOWN:
+			if (selectedIndex < Pixel.getInstance().accountUsernames.size() - 1) {
+				selectedIndex++;
+				
+				initGui();
+			}
+			break;
+		case Keyboard.KEY_DELETE:
+			if (buttonDelete.enabled) {
+				actionPerformed(buttonDelete);
+			}
+		}
 	}
 	
 	private class List extends GuiSlot {

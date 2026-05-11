@@ -42,12 +42,18 @@ public class GuiEditAccount extends GuiScreen {
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
 		textFieldUsername.textboxKeyTyped(typedChar, keyCode);
 		
-		if (keyCode == 15) {
+		switch (keyCode) {
+		case Keyboard.KEY_ESCAPE:
+			mc.displayGuiScreen(prevGuiScreen);
+			break;
+		case Keyboard.KEY_TAB:
 			textFieldUsername.setFocused(!textFieldUsername.isFocused());
-		}
-		
-		if (keyCode == 28 || keyCode == 156) {
-			actionPerformed(buttonEdit);
+			break;
+		case Keyboard.KEY_RETURN:
+		case Keyboard.KEY_NUMPADENTER:
+			if (buttonEdit.enabled) {
+				actionPerformed(buttonEdit);
+			}
 		}
 		
 		buttonEdit.enabled = textFieldUsername.getText().matches("^[a-zA-Z0-9_]{3,16}$");
