@@ -9,6 +9,7 @@ import pixel.mod.option.ModOptionParent;
 import pixel.mod.option.type.ModOptionColor;
 import pixel.mod.option.type.ModOptionEnum;
 import pixel.mod.option.type.ModOptionFloat;
+import pixel.mod.option.type.ModOptionInt;
 import pixel.util.ColorManager;
 
 public abstract class ModDisplayBase extends ModDraggable {
@@ -25,6 +26,8 @@ public abstract class ModDisplayBase extends ModDraggable {
 				new ModOptionEnum("brackets", Brackets.toEnumList(), Brackets.SQUARE.getIndex(), new InGuiSettings("Brackets")),
 				new ModOption("drawBackground", false, new InGuiSettings("Draw Background")),
 				new ModOptionColor(new ModOptionParent("drawBackground"), "backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
+				new ModOptionInt(new ModOptionParent("drawBackground"), "backgroundWidth", 54, 50, 60, new ModOptionInt.InGuiSettings("Background Width")),
+				new ModOptionInt(new ModOptionParent("drawBackground"), "backgroundHeight", 14, 10, 20, new ModOptionInt.InGuiSettings("Background Height")),
 				new ModOption(new ModOptionParent("drawBackground"), "drawBorder", false, new InGuiSettings("Draw Border")),
 				new ModOptionFloat(new ModOptionParent("drawBorder"), "borderThickness", 1.0F, 0.5F, 2.0F, new ModOptionFloat.InGuiSettings("Border Thickness", 1)),
 				new ModOptionColor(new ModOptionParent("drawBorder"), "borderColor", ColorManager.BLACK.getARGB(), false, new ModOptionColor.InGuiSettings("Border Color", true, false))
@@ -39,12 +42,12 @@ public abstract class ModDisplayBase extends ModDraggable {
 	
 	@Override
 	public int getWidth() {
-		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(dummyText));
+		return castOptionValueIntoBoolean("drawBackground") ? castOptionValueIntoInt("backgroundWidth") : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(dummyText));
 	}
 	
 	@Override
 	public int getHeight() {
-		return castOptionValueIntoBoolean("drawBackground") ? 14 : font.FONT_HEIGHT;
+		return castOptionValueIntoBoolean("drawBackground") ? castOptionValueIntoInt("backgroundHeight") : font.FONT_HEIGHT;
 	}
 	
 	@Override

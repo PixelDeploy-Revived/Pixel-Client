@@ -32,7 +32,7 @@ public class CPS extends ModDisplayBase {
 			dummyText = "0 CPS";
 		}
 		
-		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(dummyText));
+		return castOptionValueIntoBoolean("drawBackground") ? castOptionValueIntoInt("backgroundWidth") : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(dummyText));
 	}
 
 	@Override
