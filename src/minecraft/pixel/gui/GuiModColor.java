@@ -115,7 +115,18 @@ public class GuiModColor extends GuiScreen {
 		if (option.getInGuiSettings().shouldAlphaSliderBeDrawn()) {
 			color.setAlpha((int) sliderAlpha.getValue());
 		}
+	}
+	
+	@Override
+	public void mouseReleased(int mouseX, int mouseY, int state) {
+		super.mouseReleased(mouseX, mouseY, state);
 		
+		option.setARGB(color.getARGB());
+		option.saveIn(mod);
+	}
+	
+	@Override
+	public void onGuiClosed() {		
 		option.setARGB(color.getARGB());
 		option.saveIn(mod);
 	}
