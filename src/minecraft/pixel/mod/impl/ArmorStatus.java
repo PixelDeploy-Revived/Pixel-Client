@@ -145,8 +145,8 @@ public class ArmorStatus extends ModDraggable {
 			int maxDamage = itemStack.getMaxDamage();
 			double damagePercentage = ((maxDamage - damage) / (double) maxDamage) * 100.0D;
 			
-			if (castOptionValueIntoBoolean("showPercentage")) {				
-				text = String.valueOf((int) damagePercentage) + "%";
+			if (castOptionValueIntoBoolean("showPercentage")) {
+				text = Math.round(damagePercentage) + "%";
 			} else if (castOptionValueIntoBoolean("showDamage")) {
 				text = String.valueOf(maxDamage - damage);
 				
