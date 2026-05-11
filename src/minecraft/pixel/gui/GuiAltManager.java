@@ -36,7 +36,8 @@ public class GuiAltManager extends GuiScreen {
 		buttonList.add(buttonDelete = new GuiButton(4,   width / 2 - 50, height - 28, 100, 20, "Delete"));
 		buttonList.add(new GuiButton(0,  width / 2 + 4+  50, height - 28, 100, 20, I18n.format("gui.cancel", new Object[0])));
 		
-		buttonLogin.enabled = buttonEdit.enabled = buttonDelete.enabled = selectedIndex >= 0;
+		buttonLogin.enabled = selectedIndex >= 0 && !mc.session.getUsername().equals(Pixel.getInstance().accountUsernames.get(selectedIndex));
+		buttonEdit.enabled = buttonDelete.enabled = selectedIndex >= 0;
 		
 		accountList = new List(mc, width, height);
 		accountList.registerScrollButtons(7, 8);
