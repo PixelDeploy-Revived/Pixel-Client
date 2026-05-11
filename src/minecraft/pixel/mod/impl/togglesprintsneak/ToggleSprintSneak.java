@@ -9,14 +9,13 @@ import pixel.mod.option.ModOptionParent;
 import pixel.mod.option.type.ModOptionColor;
 import pixel.mod.option.type.ModOptionEnum;
 import pixel.mod.option.type.ModOptionFloat;
+import pixel.mod.option.type.ModOptionInt;
 import pixel.util.ColorManager;
 
 public class ToggleSprintSneak extends ModDraggable {
 	public int keyHoldTicks = 7;
 	public boolean sprinting = false;
 	public boolean sneaking = false;
-	
-	private int RECT_GAP = 10;
 	
 	public ToggleSprintSneak() {
 		super(true);
@@ -32,6 +31,8 @@ public class ToggleSprintSneak extends ModDraggable {
 				new ModOptionEnum(new ModOptionParent("showText"), "brackets", Brackets.toEnumList(), Brackets.SQUARE.getIndex(), new InGuiSettings("Brackets")),
 				new ModOption(new ModOptionParent("showText"), "drawBackground", false, new InGuiSettings("Draw Background")),
 				new ModOptionColor(new ModOptionParent("drawBackground"), "backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
+				new ModOptionInt(new ModOptionParent("drawBackground"), "backgroundGap", 10, 5, 20, new ModOptionInt.InGuiSettings("Background Width")),
+				new ModOptionInt(new ModOptionParent("drawBackground"), "backgroundHeight", 17, 10, 20, new ModOptionInt.InGuiSettings("Background Height")),
 				new ModOption(new ModOptionParent("drawBackground"), "drawBorder", false, new InGuiSettings("Draw Border")),
 				new ModOptionColor(new ModOptionParent("drawBorder"), "borderColor", ColorManager.BLACK.getARGB(), false, new ModOptionColor.InGuiSettings("Border Color", true, false)),
 				new ModOptionFloat(new ModOptionParent("drawBorder"), "borderThickness", 1.0F, 0.5F, 2.0F, new ModOptionFloat.InGuiSettings("Border Thickness", 1))
@@ -48,7 +49,7 @@ public class ToggleSprintSneak extends ModDraggable {
 		int width = font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("Sprinting (Toggled)"));
 		
 		if (castOptionValueIntoBoolean("drawBackground")) {
-			width += RECT_GAP;
+			width += castOptionValueIntoInt("backgroundGap");
 		}
 		
 		return width;
@@ -56,7 +57,7 @@ public class ToggleSprintSneak extends ModDraggable {
 
 	@Override
 	public int getHeight() {
-		return castOptionValueIntoBoolean("drawBackground") ? 17 : font.FONT_HEIGHT;
+		return castOptionValueIntoBoolean("drawBackground") ? castOptionValueIntoInt("backgroundHeight") : font.FONT_HEIGHT;
 	}
 
 	@Override
@@ -77,13 +78,13 @@ public class ToggleSprintSneak extends ModDraggable {
 		String formattedText = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(text);
 		
 		if (castOptionValueIntoBoolean("drawBackground")) {	    		
-			drawRect(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB(), formattedText, RECT_GAP);
+			drawRect(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB(), formattedText, castOptionValueIntoInt("backgroundGap"));
 	    	
 	    	if (castOptionValueIntoBoolean("drawBorder")) {
-	    		drawBorder(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"), formattedText, RECT_GAP);
+	    		drawBorder(pos, pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"), formattedText, castOptionValueIntoInt("backgroundGap"));
 	    	}
 	    	
-	    	drawTextCentered(formattedText, RECT_GAP, pos.getAbsoluteX(), pos.getAbsoluteY(), getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
+	    	drawTextCentered(formattedText, castOptionValueIntoInt("backgroundGap"), pos.getAbsoluteX(), pos.getAbsoluteY(), getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
     	} else {
 		    drawTextAligned(formattedText, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
     	}
