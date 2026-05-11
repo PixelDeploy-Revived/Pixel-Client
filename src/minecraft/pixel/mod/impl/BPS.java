@@ -1,79 +1,21 @@
 package pixel.mod.impl;
 
 import pixel.gui.hud.ScreenPosition;
-import pixel.mod.ModDraggable;
-import pixel.mod.option.Brackets;
-import pixel.mod.option.ModOption;
-import pixel.mod.option.ModOption.InGuiSettings;
-import pixel.mod.option.ModOptionParent;
-import pixel.mod.option.type.ModOptionColor;
-import pixel.mod.option.type.ModOptionEnum;
-import pixel.mod.option.type.ModOptionFloat;
-import pixel.util.ColorManager;
+import pixel.mod.ModDisplayBase;
 
-public class BPS extends ModDraggable {
+public class BPS extends ModDisplayBase {
 	public BPS() {
-		super(false, 0, 0);
-		
-		loadOptions(
-				new ModOptionColor("textColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),
-				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
-				new ModOptionEnum("brackets", Brackets.toEnumList(), Brackets.SQUARE.getIndex(), new InGuiSettings("Brackets")),
-				new ModOption("drawBackground", false, new InGuiSettings("Draw Background")),
-				new ModOptionColor(new ModOptionParent("drawBackground"), "backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
-				new ModOption(new ModOptionParent("drawBackground"), "drawBorder", false, new InGuiSettings("Draw Border")),
-				new ModOptionFloat(new ModOptionParent("drawBorder"), "borderThickness", 1.0F, 0.5F, 2.0F, new ModOptionFloat.InGuiSettings("Border Thickness", 1)),
-				new ModOptionColor(new ModOptionParent("drawBorder"), "borderColor", ColorManager.BLACK.getARGB(), false, new ModOptionColor.InGuiSettings("Border Color", true, false))
-				);
+		super("0,00 m/s");
 	}
 	
 	private float blocks;
-	
-	@Override
-	public int getWidth() {
-		return castOptionValueIntoBoolean("drawBackground") ? 54 : font.getStringWidth(Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0,00 m/s"));
-	}
-	
-	@Override
-	public int getHeight() {
-		return castOptionValueIntoBoolean("drawBackground") ? 14 : font.FONT_HEIGHT;
-	}
 	
 	@Override
 	public void render(ScreenPosition pos) {
 		float ticks = mc.timer.ticksPerSecond * mc.timer.timerSpeed;
 		
         blocks = (float) (mc.thePlayer.getDistance(mc.thePlayer.lastTickPosX, mc.thePlayer.lastTickPosY, mc.thePlayer.lastTickPosZ) * ticks);
-        
-		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap(String.format("%.2f", blocks) + " m/s");
-		
-		if (castOptionValueIntoBoolean("drawBackground")) {
-			drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB());
-			
-			if (castOptionValueIntoBoolean("drawBorder")) {
-				drawBorder(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"));
-			}
-			
-			drawTextCentered(text, pos.getAbsoluteX(), pos.getAbsoluteY(), getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-		} else {
-			drawTextAligned(text, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-	    }
-	}
-	
-	@Override
-	public void renderDummy(ScreenPosition pos) {
-		String text = Brackets.fromIndex(castOptionValueIntoInt("brackets")).wrap("0,00 m/s");
-		
-		if (castOptionValueIntoBoolean("drawBackground")) {
-			drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("backgroundColor").getARGB());
-			
-			if (castOptionValueIntoBoolean("drawBorder")) {
-				drawBorder(pos.getAbsoluteX(), pos.getAbsoluteY(), getWidth(), getHeight(), getOptionColor("borderColor").getARGB(), castOptionValueIntoFloat("borderThickness"));
-			}
-	    	
-			drawTextCentered(text, pos.getAbsoluteX(), pos.getAbsoluteY(), getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-		} else {
-			drawTextAligned(text, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 1, getOptionColor("textColor").getARGB(), castOptionValueIntoBoolean("textShadow"), getOptionColor("textColor").isChromaEnabled());
-		}
+        		
+		draw(pos, String.format("%.2f", blocks) + " m/s");
 	}
 }
