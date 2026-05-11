@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -82,13 +83,23 @@ public class GuiModPositioning extends GuiScreen {
 			isRightButtonDown = true;
 			
 			if (!selectedRenderer.isPresent()) {
-				selectedRenderer = renderers.keySet().stream().filter((renderer) -> isRendererHovered(renderer, mouseX, mouseY)).findFirst();
+				List<IRenderer> list = new ArrayList<>(renderers.keySet());
+				
+				for (int i = list.size() - 1; i >= 0; i--) {
+					IRenderer renderer = list.get(i);
+					
+					if (isRendererHovered(renderer, mouseX, mouseY)) {
+						selectedRenderer = Optional.of(renderer);
+						break;
+					}
+				}
 			}
 		}
 	}
 	
 	@Override
 	protected void mouseReleased(int mouseX, int mouseY, int state) {
+		System.out.println(state);
 		switch (state) {
 		case 1:
 			isRightButtonDown = false;
