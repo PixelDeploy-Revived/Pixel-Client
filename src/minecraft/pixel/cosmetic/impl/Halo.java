@@ -21,7 +21,7 @@ public class Halo extends Cosmetic {
 		super(CosmeticHalo.class);
 		
 		loadOptions(
-				new CosmeticOptionColor("color", ColorManager.WHITE.getARGB(), false, 3000, new InGuiSettings("Color"))
+				new CosmeticOptionColor("color", ColorManager.YELLOW.getARGB(), false, 3000, new InGuiSettings("Color"))
 				);
 	}
 
