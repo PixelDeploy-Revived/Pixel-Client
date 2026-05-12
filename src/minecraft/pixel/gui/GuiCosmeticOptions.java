@@ -76,12 +76,12 @@ public class GuiCosmeticOptions extends GuiScreen {
 		
 		int totPages = cosmetic.getOptions().length / optionsPerPage;
 		
-		if (totPages + 1 > 1) {
+		if (totPages + 1 > 1 && cosmetic.getOptions().length != optionsPerPage) {
 			if (page > 0) {
 				buttonList.add(new GuiButton(-2, (width - 200) / 2 - 2 - 20, height / 6 + 168, 20, 20, "<"));
 			}
 			
-			if (page < totPages) {
+			if (page < totPages && page + 1 != totPages) {
 				buttonList.add(new GuiButton(-3, (width + 200) / 2 + 2, height / 6 + 168, 20, 20, ">"));
 			}
 		}
