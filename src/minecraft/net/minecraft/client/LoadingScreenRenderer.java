@@ -13,6 +13,8 @@ import net.minecraft.util.MinecraftError;
 import net.optifine.CustomLoadingScreen;
 import net.optifine.CustomLoadingScreens;
 import net.optifine.reflect.Reflector;
+import pixel.mod.ModHandler;
+import pixel.mod.impl.FPSBoost;
 
 public class LoadingScreenRenderer implements IProgressUpdate
 {
@@ -121,6 +123,8 @@ public class LoadingScreenRenderer implements IProgressUpdate
      */
     public void setLoadingProgress(int progress)
     {
+    	if (ModHandler.get(FPSBoost.class).isEnabled() && ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("fastWorldLoadingScreen") && mc.theWorld != null && !mc.isSingleplayer()) return;
+    	
         if (!this.mc.running)
         {
             if (!this.loadingSuccess)

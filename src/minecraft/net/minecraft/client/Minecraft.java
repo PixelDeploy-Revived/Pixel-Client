@@ -194,6 +194,7 @@ import pixel.event.impl.TickEvent;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
 import pixel.mod.impl.Extra;
+import pixel.mod.impl.FPSBoost;
 import pixel.mod.impl.Zoom;
 import pixel.mod.impl.togglesprintsneak.MovementInput;
 
@@ -441,6 +442,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                         {
                             this.freeMemory();
                             this.displayGuiScreen(new GuiMemoryErrorScreen());
+                            
+                            if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+                            	System.gc();
+                            }
                         }
                     }
                     else
@@ -1091,6 +1096,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 System.exit(0);
             }
         }
+        
+        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        	System.gc();
+        }
     }
 
     /**
@@ -1290,11 +1299,19 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
         try
         {
+        	if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+            	System.gc();
+            }
+        	
             this.loadWorld((WorldClient)null);
         }
         catch (Throwable var2)
         {
             ;
+        }
+        
+        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        	System.gc();
         }
     }
 
@@ -2295,6 +2312,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public void launchIntegratedServer(String folderName, String worldName, WorldSettings worldSettingsIn)
     {
         this.loadWorld((WorldClient)null);
+        
+        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        	System.gc();
+        }
+        
         ISaveHandler isavehandler = this.saveLoader.getSaveLoader(folderName, false);
         WorldInfo worldinfo = isavehandler.loadWorldInfo();
 
@@ -2443,6 +2465,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         {
             this.saveLoader.flushCache();
             this.thePlayer = null;
+        }
+        
+        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        	System.gc();
         }
 
         this.systemTime = 0L;
