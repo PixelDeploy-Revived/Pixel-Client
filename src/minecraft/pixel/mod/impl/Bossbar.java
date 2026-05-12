@@ -94,14 +94,14 @@ public class Bossbar extends ModDraggable {
 			mc.getTextureManager().bindTexture(Gui.icons);
 			
 			int healthY = pos.getAbsoluteY() + (castOptionValueIntoBoolean("showName") ? font.FONT_HEIGHT + 1 : 0);
-
-            drawTexturedModalRect(pos.getAbsoluteX(), healthY, 0, 74, 182, 5);
-            
-            int healthWidth = (int) (bossHealthScale * (182.0F + 1.0F));
-            
-            if (healthWidth > 0) {
-            	drawTexturedModalRect(pos.getAbsoluteX(), healthY, 0, 79, healthWidth, 5);
-            }
+			
+			drawTexturedModalRect(pos.getAbsoluteX(), healthY, 0, 74, 182, 5);
+			
+			int healthWidth = (int) (bossHealthScale * (182.0F + 1.0F));
+			
+			if (healthWidth > 0) {
+				drawTexturedModalRect(pos.getAbsoluteX(), healthY, 0, 79, healthWidth, 5);
+			}
 		}
 		
 		if (castOptionValueIntoBoolean("showName")) {
