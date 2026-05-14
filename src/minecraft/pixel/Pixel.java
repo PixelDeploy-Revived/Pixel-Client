@@ -109,15 +109,7 @@ public class Pixel {
 		cosmeticsFile = FileManager.create("cosmetics");
 		altsFile = FileManager.create("alts");
 		
-		if (altsFile.containsKey("usernames")) {
-			JSONArray usernames = (JSONArray) altsFile.get("usernames");
-			
-			for (Object username : usernames) {
-				accountUsernames.add((String) username);
-			}
-		} else {
-			altsFile.put("usernames", new JSONArray());
-		}
+		initAlts();
 		
 		discord.start();
 		
@@ -133,6 +125,18 @@ public class Pixel {
 	public void renderCosmetics() {
 		for (RenderPlayer renderPlayer : mc.getRenderManager().getSkinMap().values()) {
 			CosmeticHandler.renderOn(renderPlayer);
+		}
+	}
+	
+	public void initAlts() {
+		if (altsFile.containsKey("usernames")) {
+			JSONArray usernames = (JSONArray) altsFile.get("usernames");
+			
+			for (Object username : usernames) {
+				accountUsernames.add((String) username);
+			}
+		} else {
+			altsFile.put("usernames", new JSONArray());
 		}
 	}
 	
