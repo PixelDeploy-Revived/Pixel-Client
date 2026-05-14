@@ -21,7 +21,7 @@ public class TopHat extends Cosmetic {
 		super(CosmeticTopHat.class);
 		
 		loadOptions(
-				new CosmeticOptionColor("color", ColorManager.WHITE.getARGB(), false, 3000, new InGuiSettings("Color"))
+				new CosmeticOptionColor("color", ColorManager.RED.getARGB(), false, 3000, new InGuiSettings("Color"))
 				);
 	}
 

@@ -18,6 +18,7 @@ public class ColorManager {
 	public static final ColorManager RED_4C = new ColorManager(76, 255, 0, 0);
 	public static final ColorManager GRAY = new ColorManager(128, 128, 128);
 	public static final ColorManager YELLOW = new ColorManager(255, 255, 0);
+	public static final ColorManager RED = new ColorManager(255, 0, 0);
 	
 	public static final ColorManager DEFAULT_DARK_RED = new ColorManager(170, 0, 0);
 	public static final ColorManager DEFAULT_RED = new ColorManager(255, 85, 85);
