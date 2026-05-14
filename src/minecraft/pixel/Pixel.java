@@ -28,7 +28,7 @@ public class Pixel {
 	private static final Pixel instance = new Pixel();
 	private static final Minecraft mc = Minecraft.getMinecraft();
 	
-	private static final String COMMIT = "3f2e826";
+	private static final String COMMIT = "7573287";
 	private static final String BRANCH = "main";
 	
 	private final Discord discord = new Discord();
