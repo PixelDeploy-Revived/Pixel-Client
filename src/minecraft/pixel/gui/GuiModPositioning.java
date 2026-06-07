@@ -45,7 +45,7 @@ public class GuiModPositioning extends GuiScreen {
 		Gui.drawHorizontalLine(0, width, height / 3.0F, 0.5F, ColorManager.WHITE.getARGB());
 		Gui.drawHorizontalLine(0, width, height - (height / 3.0F), 0.5F, ColorManager.WHITE.getARGB());
 		
-		for (IRenderer renderer: renderers.keySet()) {
+		for (IRenderer renderer : renderers.keySet()) {
 			ScreenPosition pos = renderers.get(renderer);
 			
 			renderer.renderDummy(pos);
