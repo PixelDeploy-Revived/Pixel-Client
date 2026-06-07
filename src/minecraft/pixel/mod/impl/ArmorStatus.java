@@ -78,10 +78,24 @@ public class ArmorStatus extends ModDraggable {
 			getOption("reverse").saveIn(this);
 		}
 		
+		int n = 0;
+		
+		if (castOptionValueIntoBoolean("equippedItem") && mc.thePlayer.inventory.getCurrentItem() != null) {
+			n++;
+		}
+		
+		if (castOptionValueIntoBoolean("armor")) {
+			for (ItemStack itemStack : mc.thePlayer.inventory.armorInventory) {
+				if (itemStack != null) {										
+					n++;
+				}
+			}
+		}
+		
 		int i = 0;
 		
 		if (castOptionValueIntoBoolean("equippedItem") && mc.thePlayer.inventory.getCurrentItem() != null) {
-			drawItemStack(pos, i, mc.thePlayer.inventory.getCurrentItem());
+			drawItemStack(pos, i, n, mc.thePlayer.inventory.getCurrentItem());
 			
 			i++;
 		}
@@ -89,7 +103,7 @@ public class ArmorStatus extends ModDraggable {
 		if (castOptionValueIntoBoolean("armor")) {
 			for (ItemStack itemStack : mc.thePlayer.inventory.armorInventory) {
 				if (itemStack != null) {
-					drawItemStack(pos, i, itemStack);
+					drawItemStack(pos, i, n, itemStack);
 					
 					i++;
 				}
@@ -107,27 +121,37 @@ public class ArmorStatus extends ModDraggable {
 			getOption("reverse").saveIn(this);
 		}
 		
-		int i = 0;
+		int n = 0;
 		
 		if (castOptionValueIntoBoolean("equippedItem")) {
-			drawItemStack(pos, i++, new ItemStack(Items.diamond_sword));
+			n += 1;
 		}
 		
 		if (castOptionValueIntoBoolean("armor")) {
-			drawItemStack(pos, i++, new ItemStack(Items.diamond_boots));
-			drawItemStack(pos, i++, new ItemStack(Items.diamond_leggings));
-			drawItemStack(pos, i++, new ItemStack(Items.diamond_chestplate));
-			drawItemStack(pos, i, new ItemStack(Items.diamond_helmet));
+			n += 4;
+		}
+		
+		int i = 0;
+		
+		if (castOptionValueIntoBoolean("equippedItem")) {
+			drawItemStack(pos, i++, n, new ItemStack(Items.diamond_sword));
+		}
+		
+		if (castOptionValueIntoBoolean("armor")) {
+			drawItemStack(pos, i++, n, new ItemStack(Items.diamond_boots));
+			drawItemStack(pos, i++, n, new ItemStack(Items.diamond_leggings));
+			drawItemStack(pos, i++, n, new ItemStack(Items.diamond_chestplate));
+			drawItemStack(pos, i, n, new ItemStack(Items.diamond_helmet));
 		}
 	}
 	
-	private void drawItemStack(ScreenPosition pos, int i, ItemStack itemStack) {
+	private void drawItemStack(ScreenPosition pos, int i, int n, ItemStack itemStack) {
 		GlStateManager.pushMatrix();
 		
 		RenderHelper.enableGUIStandardItemLighting();
 		
 		int itemX = castOptionValueIntoBoolean("reverse") ? pos.getAbsoluteX() + getWidth() - 16 : pos.getAbsoluteX();
-		int offsetY = (-16 * i) + getHeight() - 16;
+		int offsetY = pos.getRelativeY() > 1.0D / 2.0D ? getHeight() - 16 - i * 16 : (n - 1 - i) * 16;
 		
 		mc.getRenderItem().renderItemAndEffectIntoGUI(itemStack, itemX, pos.getAbsoluteY() + offsetY);
 		
