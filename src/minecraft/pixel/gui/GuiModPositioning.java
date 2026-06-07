@@ -99,7 +99,6 @@ public class GuiModPositioning extends GuiScreen {
 	
 	@Override
 	protected void mouseReleased(int mouseX, int mouseY, int state) {
-		System.out.println(state);
 		switch (state) {
 		case 1:
 			isRightButtonDown = false;
