@@ -212,7 +212,7 @@ import pixel.gui.GuiDisconnected;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
 import pixel.mod.impl.Extra;
-import pixel.mod.impl.FPSBoost;
+import pixel.mod.impl.Performance;
 import pixel.mod.impl.Particles;
 
 import org.apache.logging.log4j.LogManager;
@@ -288,7 +288,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         this.gameController.gameSettings.difficulty = packetIn.getDifficulty();
         this.gameController.loadWorld(this.clientWorldController);
         this.gameController.thePlayer.dimension = packetIn.getDimension();
-        this.gameController.displayGuiScreen(ModHandler.get(FPSBoost.class).isEnabled() && ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("fastWorldLoadingScreen") ? null : new GuiDownloadTerrain(this));
+        this.gameController.displayGuiScreen(ModHandler.get(Performance.class).isEnabled() && ModHandler.get(Performance.class).castOptionValueIntoBoolean("fastWorldLoadingScreen") ? null : new GuiDownloadTerrain(this));
         this.gameController.thePlayer.setEntityId(packetIn.getEntityId());
         this.currentServerMaxPlayers = packetIn.getMaxPlayers();
         this.gameController.thePlayer.setReducedDebug(packetIn.isReducedDebugInfo());
@@ -1077,7 +1077,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
             this.clientWorldController.setWorldScoreboard(scoreboard);
             this.gameController.loadWorld(this.clientWorldController);
             this.gameController.thePlayer.dimension = packetIn.getDimensionID();
-            this.gameController.displayGuiScreen(ModHandler.get(FPSBoost.class).isEnabled() && ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("fastWorldLoadingScreen") ? null : new GuiDownloadTerrain(this));
+            this.gameController.displayGuiScreen(ModHandler.get(Performance.class).isEnabled() && ModHandler.get(Performance.class).castOptionValueIntoBoolean("fastWorldLoadingScreen") ? null : new GuiDownloadTerrain(this));
         }
 
         this.gameController.setDimensionAndSpawnPlayer(packetIn.getDimensionID());

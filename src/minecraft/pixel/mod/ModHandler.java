@@ -20,7 +20,7 @@ import pixel.mod.impl.DayCounter;
 import pixel.mod.impl.Direction;
 import pixel.mod.impl.Extra;
 import pixel.mod.impl.FPS;
-import pixel.mod.impl.FPSBoost;
+import pixel.mod.impl.Performance;
 import pixel.mod.impl.Freelook;
 import pixel.mod.impl.HealthIndicator;
 import pixel.mod.impl.HitColor;
@@ -81,7 +81,7 @@ public class ModHandler {
 			new BPS(),
 			new ReachDisplay(),
 			new ServerAddress(),
-			new FPSBoost()
+			new Performance()
 			);
 	private static final Map<Class<? extends Mod>, Mod> MODS_MAP = new HashMap<>();
 	

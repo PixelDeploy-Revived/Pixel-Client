@@ -194,7 +194,7 @@ import pixel.event.impl.TickEvent;
 import pixel.gui.GuiMainMenu;
 import pixel.mod.ModHandler;
 import pixel.mod.impl.Extra;
-import pixel.mod.impl.FPSBoost;
+import pixel.mod.impl.Performance;
 import pixel.mod.impl.Zoom;
 import pixel.mod.impl.togglesprintsneak.MovementInput;
 
@@ -443,7 +443,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                             this.freeMemory();
                             this.displayGuiScreen(new GuiMemoryErrorScreen());
                             
-                            if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+                            if (!ModHandler.get(Performance.class).isEnabled() || ModHandler.get(Performance.class).isEnabled() && !ModHandler.get(Performance.class).castOptionValueIntoBoolean("disableSystemGC")) {
                             	System.gc();
                             }
                         }
@@ -1097,7 +1097,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             }
         }
         
-        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        if (!ModHandler.get(Performance.class).isEnabled() || ModHandler.get(Performance.class).isEnabled() && !ModHandler.get(Performance.class).castOptionValueIntoBoolean("disableSystemGC")) {
         	System.gc();
         }
     }
@@ -1299,7 +1299,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
         try
         {
-        	if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        	if (!ModHandler.get(Performance.class).isEnabled() || ModHandler.get(Performance.class).isEnabled() && !ModHandler.get(Performance.class).castOptionValueIntoBoolean("disableSystemGC")) {
             	System.gc();
             }
         	
@@ -1310,7 +1310,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             ;
         }
         
-        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        if (!ModHandler.get(Performance.class).isEnabled() || ModHandler.get(Performance.class).isEnabled() && !ModHandler.get(Performance.class).castOptionValueIntoBoolean("disableSystemGC")) {
         	System.gc();
         }
     }
@@ -2313,7 +2313,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         this.loadWorld((WorldClient)null);
         
-        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        if (!ModHandler.get(Performance.class).isEnabled() || ModHandler.get(Performance.class).isEnabled() && !ModHandler.get(Performance.class).castOptionValueIntoBoolean("disableSystemGC")) {
         	System.gc();
         }
         
@@ -2467,7 +2467,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.thePlayer = null;
         }
         
-        if (!ModHandler.get(FPSBoost.class).isEnabled() || ModHandler.get(FPSBoost.class).isEnabled() && !ModHandler.get(FPSBoost.class).castOptionValueIntoBoolean("disableSystemGC")) {
+        if (!ModHandler.get(Performance.class).isEnabled() || ModHandler.get(Performance.class).isEnabled() && !ModHandler.get(Performance.class).castOptionValueIntoBoolean("disableSystemGC")) {
         	System.gc();
         }
 

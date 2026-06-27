@@ -4,8 +4,8 @@ import pixel.mod.Mod;
 import pixel.mod.option.ModOption;
 import pixel.mod.option.ModOption.InGuiSettings;
 
-public class FPSBoost extends Mod {
-	public FPSBoost() {
+public class Performance extends Mod {
+	public Performance() {
 		super(true);
 
 		loadOptions(
