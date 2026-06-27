@@ -25,6 +25,7 @@ public class Direction extends ModDraggable {
 				new ModOptionColor("markerColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Marker Color", true, false)),
 				new ModOptionInt("spacing", 65, 30, 150, new ModOptionInt.InGuiSettings("Spacing")),
 				new ModOptionInt("width", 300, 100, 300, new ModOptionInt.InGuiSettings("Width")),
+				new ModOption("showIntercardinalDirections", true, new InGuiSettings("Show Intercardinal Directions")),
 				new ModOptionColor("backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
 				new ModOption("drawBorder", false, new InGuiSettings("Draw Border")),
 				new ModOptionColor(new ModOptionParent("drawBorder"), "borderColor", ColorManager.BLACK.getARGB(), false, new ModOptionColor.InGuiSettings("Border Color", true, false)),
@@ -55,7 +56,7 @@ public class Direction extends ModDraggable {
 		for (int i = 0; i < 8; i++) {
 			float offsetX = getDirectionOffsetX(i) * castOptionValueIntoInt("spacing");
 			
-			if (offsetX > -(getWidth() / 2 - 10) && offsetX < getWidth() / 2 - 10) {
+			if (offsetX > -(getWidth() / 2 - 10) && offsetX < getWidth() / 2 - 10 && (((castOptionValueIntoBoolean("showIntercardinalDirections") && (i % 2 != 0)) || i % 2 == 0))) {
 				int color = getOptionColor("textColor").getARGB();
 				boolean dropShadow = castOptionValueIntoBoolean("textShadow");
 				boolean chroma = getOptionColor("textColor").isChromaEnabled();
