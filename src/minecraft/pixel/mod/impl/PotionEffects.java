@@ -21,6 +21,7 @@ import pixel.util.ColorManager;
 
 public class PotionEffects extends ModDraggable {
 	private List<PotionEffect> dummyPotionEffects = Arrays.asList(new PotionEffect(Potion.moveSpeed.getId(), 20 * 60, 3), new PotionEffect(Potion.damageBoost.getId(), 20, 3));
+	private ArrayList<PotionEffect> potionEffects = new ArrayList<PotionEffect>();
 	
 	public PotionEffects() {
 		super(true);
@@ -83,10 +84,14 @@ public class PotionEffects extends ModDraggable {
 			getOption("reverse").saveIn(this);
 		}
 		
-		List<PotionEffect> activePotionEffects = new ArrayList<>(mc.thePlayer.getActivePotionEffects());
+		potionEffects.clear();
+				
+		for (PotionEffect potionEffect : mc.thePlayer.getActivePotionEffects()) {
+			potionEffects.add(potionEffect);
+		}
 		
-		for (int i = 0; i < activePotionEffects.size(); i++) {
-			drawPotionEffect(pos, i, activePotionEffects.get(i));
+		for (int i = 0; i < potionEffects.size(); i++) {
+			drawPotionEffect(pos, i, potionEffects.get(i));
 		}
 	}
 	
@@ -100,8 +105,14 @@ public class PotionEffects extends ModDraggable {
 			getOption("reverse").saveIn(this);
 		}
 		
-		for (int i = 0; i < dummyPotionEffects.size(); i++) {
-			drawPotionEffect(pos, i, dummyPotionEffects.get(i));
+		potionEffects.clear();
+		
+		for (PotionEffect potionEffect : dummyPotionEffects) {
+			potionEffects.add(potionEffect);
+		}
+		
+		for (int i = 0; i < potionEffects.size(); i++) {
+			drawPotionEffect(pos, i, potionEffects.get(i));
 		}
 	}
 	
@@ -117,36 +128,45 @@ public class PotionEffects extends ModDraggable {
 	
 	private void drawPotionEffect(ScreenPosition pos, int i, PotionEffect potionEffect) {
 		if (potionEffect != null) {
-			int offsetY = i * 20;
+			int absoluteY = i * 20;
+			int totalHeight = potionEffects.size() * 20;
+			
+			if (pos.getRelativeY() < 1.0D / 3.0D) {
+				absoluteY += pos.getAbsoluteY();
+			} else if (pos.getRelativeY() > 2.0D / 3.0D) {
+				absoluteY += pos.getAbsoluteY() + getHeight() - totalHeight;
+			} else {
+				absoluteY += pos.getAbsoluteY() + getHeight() / 2 - totalHeight / 2;
+			}
 			
 			if (castOptionValueIntoBoolean("showIcon")) {
 				Potion potion = Potion.potionTypes[potionEffect.getPotionID()];
 				int iconX = castOptionValueIntoBoolean("reverse") ? pos.getAbsoluteX() + getWidth() - 20 : pos.getAbsoluteX();
 				
 				if (potion.hasStatusIcon()) {
-					 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-					 
-					 mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/container/inventory.png"));
-					 
-					 int iconIndex = potion.getStatusIconIndex();
-					 
-					 drawTexturedModalRect(iconX, pos.getAbsoluteY() + offsetY + 2, iconIndex % 8 * 18, 198 + iconIndex / 8 * 18, 18, 18);
+					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+					
+					mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/container/inventory.png"));
+					
+					int iconIndex = potion.getStatusIconIndex();
+					
+					drawTexturedModalRect(iconX, absoluteY + 2, iconIndex % 8 * 18, 198 + iconIndex / 8 * 18, 18, 18);
 				}
 			}
 			
 			int j = castOptionValueIntoBoolean("showIcon") ? 20 : 0;
 			
 			if (castOptionValueIntoBoolean("showName")) {
-				 String potionName = getPotionName(potionEffect);
-				 
-				 int nameX = castOptionValueIntoBoolean("reverse") ? pos.getAbsoluteX() + getWidth() - font.getStringWidth(potionName) - j - 2 : pos.getAbsoluteX() + j + 2;
-				 
-				 drawText(potionName, nameX, pos.getAbsoluteY() + offsetY + 2, getOptionColor("nameTextColor").getARGB(), castOptionValueIntoBoolean("nameTextShadow"), getOptionColor("nameTextColor").isChromaEnabled());
+				String potionName = getPotionName(potionEffect);
+				
+				int nameX = castOptionValueIntoBoolean("reverse") ? pos.getAbsoluteX() + getWidth() - font.getStringWidth(potionName) - j - 2 : pos.getAbsoluteX() + j + 2;
+				
+				drawText(potionName, nameX, absoluteY + 2, getOptionColor("nameTextColor").getARGB(), castOptionValueIntoBoolean("nameTextShadow"), getOptionColor("nameTextColor").isChromaEnabled());
 			}
 			
 			String durationString = Potion.getDurationString(potionEffect);
 			int durationX = castOptionValueIntoBoolean("reverse") ? pos.getAbsoluteX() + getWidth() - font.getStringWidth(durationString) - j - 2: pos.getAbsoluteX() + j + 2;
-			int durationY = pos.getAbsoluteY() + offsetY + font.FONT_HEIGHT + (castOptionValueIntoBoolean("showName") ? 2 : -2);
+			int durationY = absoluteY + font.FONT_HEIGHT + (castOptionValueIntoBoolean("showName") ? 2 : -2);
 			
 			if (castOptionValueIntoBoolean("blink")) {
 				if (potionEffect.getDuration() / 20 < castOptionValueIntoInt("blinkStart")) {
