@@ -78,20 +78,7 @@ public class ArmorStatus extends ModDraggable {
 			getOption("reverse").saveIn(this);
 		}
 		
-		int n = 0;
-		
-		if (castOptionValueIntoBoolean("equippedItem") && mc.thePlayer.inventory.getCurrentItem() != null) {
-			n++;
-		}
-		
-		if (castOptionValueIntoBoolean("armor")) {
-			for (ItemStack itemStack : mc.thePlayer.inventory.armorInventory) {
-				if (itemStack != null) {										
-					n++;
-				}
-			}
-		}
-		
+		int n = getArmorSlots(false);
 		int i = 0;
 		
 		if (castOptionValueIntoBoolean("equippedItem") && mc.thePlayer.inventory.getCurrentItem() != null) {
@@ -121,16 +108,7 @@ public class ArmorStatus extends ModDraggable {
 			getOption("reverse").saveIn(this);
 		}
 		
-		int n = 0;
-		
-		if (castOptionValueIntoBoolean("equippedItem")) {
-			n += 1;
-		}
-		
-		if (castOptionValueIntoBoolean("armor")) {
-			n += 4;
-		}
-		
+		int n = getArmorSlots(true);
 		int i = 0;
 		
 		if (castOptionValueIntoBoolean("equippedItem")) {
@@ -200,5 +178,33 @@ public class ArmorStatus extends ModDraggable {
 		}
 		
 		GlStateManager.popMatrix();
+	}
+	
+	private int getArmorSlots(boolean dummy) {
+		int n = 0;
+		
+		if (dummy) {
+			if (castOptionValueIntoBoolean("equippedItem")) {
+				n += 1;
+			}
+			
+			if (castOptionValueIntoBoolean("armor")) {
+				n += 4;
+			}
+		} else {
+			if (castOptionValueIntoBoolean("equippedItem") && mc.thePlayer.inventory.getCurrentItem() != null) {
+				n++;
+			}
+			
+			if (castOptionValueIntoBoolean("armor")) {
+				for (ItemStack itemStack : mc.thePlayer.inventory.armorInventory) {
+					if (itemStack != null) {										
+						n++;
+					}
+				}
+			}
+		}
+		
+		return n;
 	}
 }
