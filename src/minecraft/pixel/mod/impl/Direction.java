@@ -18,16 +18,16 @@ public class Direction extends ModDraggable {
 		loadOptions(
 				new ModOptionColor("textColor", ColorManager.GRAY.getARGB(), false, new ModOptionColor.InGuiSettings("Text Color", false, true)),
 				new ModOption("textShadow", true, new InGuiSettings("Text Shadow")),
+				new ModOptionFloat("textScale", 1.5F, 0.5F, 1.5F, new ModOptionFloat.InGuiSettings("Text Scale", 1)),
 				new ModOption("markedFacingTextShadow", true, new InGuiSettings("Marked Facing Text Shadow")),
 				new ModOptionColor("markedFacingTextColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Marked Facing Text Color", false, true)),
+				new ModOptionFloat("markedFacingTextScale", 1.0F, 0.5F, 1.5F, new ModOptionFloat.InGuiSettings("Marked Facing Text Scale", 1)),
+				new ModOptionColor("markerColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Marker Color", true, false)),
+				new ModOptionInt("spacing", 65, 30, 150, new ModOptionInt.InGuiSettings("Spacing")),
 				new ModOptionColor("backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
 				new ModOption("drawBorder", false, new InGuiSettings("Draw Border")),
 				new ModOptionColor(new ModOptionParent("drawBorder"), "borderColor", ColorManager.BLACK.getARGB(), false, new ModOptionColor.InGuiSettings("Border Color", true, false)),
-				new ModOptionFloat(new ModOptionParent("drawBorder"), "borderThickness", 1.0F, 0.5F, 2.0F, new ModOptionFloat.InGuiSettings("Border Thickness", 1)),
-				new ModOptionFloat("cardinalDirectionsScale", 1.5F, 0.5F, 1.5F, new ModOptionFloat.InGuiSettings("Cardinal Directions Scale", 1)),
-				new ModOptionFloat("directionsScale", 1.0F, 0.5F, 1.5F, new ModOptionFloat.InGuiSettings("Directions Scale", 1)),
-				new ModOptionColor("markerColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Marker Color", true, false)),
-				new ModOptionInt("spacing", 65, 30, 150, new ModOptionInt.InGuiSettings("Spacing"))
+				new ModOptionFloat(new ModOptionParent("drawBorder"), "borderThickness", 1.0F, 0.5F, 2.0F, new ModOptionFloat.InGuiSettings("Border Thickness", 1))
 				);
 	}
 
@@ -58,15 +58,15 @@ public class Direction extends ModDraggable {
 				int color = getOptionColor("textColor").getARGB();
 				boolean dropShadow = castOptionValueIntoBoolean("textShadow");
 				boolean chroma = getOptionColor("textColor").isChromaEnabled();
+				double scale = (double) castOptionValueIntoFloat("textScale");
 					
 				if (offsetX > -10 && offsetX < 10) {
 					color = getOptionColor("markedFacingTextColor").getARGB();
 					dropShadow = castOptionValueIntoBoolean("markedFacingTextShadow");
 					chroma = getOptionColor("markedFacingTextColor").isChromaEnabled();
+					scale = (double) castOptionValueIntoFloat("markedFacingTextScale");
 				}
-				
-				double scale = (double) ((i % 2 == 0) ? castOptionValueIntoFloat("cardinalDirectionsScale") : castOptionValueIntoFloat("directionsScale"));
-				
+								
 		        drawScaledText(scale, getFacing(i), pos.getAbsoluteX() + (getWidth() - font.getStringWidth(getFacing(i)) * (float) scale) / 2.0F - offsetX, pos.getAbsoluteY() + (getHeight() - (font.FONT_HEIGHT - 1) * (float) scale) / 2.0F, color, dropShadow, chroma);
 			}
 		}
