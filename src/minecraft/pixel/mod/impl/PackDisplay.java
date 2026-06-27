@@ -66,12 +66,8 @@ public class PackDisplay extends ModDraggable {
 		}
 		
 		if (!selectedPacks.isEmpty()) {
-			int offsetY = 0;
-			
 			for (int i = 0; i < selectedPacks.size(); i++) {				
-				drawPack(selectedPacks.get(i), offsetY);
-				
-				offsetY += 28;
+				drawPack(selectedPacks.get(i), i);
 			}
 		}
 	}
@@ -84,7 +80,7 @@ public class PackDisplay extends ModDraggable {
 		drawPack(selectedPacks.get(0), 0);
 	}
 	
-	private void drawPack(Pack pack, int offsetY) {
+	private void drawPack(Pack pack, int i) {
 		int maxWidth = font.getStringWidth(getLongestPackText()) + (castOptionValueIntoBoolean("showIcon") ? 28 : 0) + 8;
 		int absoluteX;
 		
@@ -96,7 +92,7 @@ public class PackDisplay extends ModDraggable {
 			absoluteX = pos.getAbsoluteX() + getWidth() / 2 - maxWidth / 2;
 		}
 		
-		int absoluteY = offsetY;
+		int absoluteY = i * 28;
 		int totalHeight = selectedPacks.size() * 28;
 		
 		if (pos.getRelativeY() < 1.0D / 3.0D) {
