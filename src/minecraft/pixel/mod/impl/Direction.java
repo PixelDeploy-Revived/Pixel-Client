@@ -24,6 +24,7 @@ public class Direction extends ModDraggable {
 				new ModOptionFloat("markedFacingTextScale", 1.0F, 0.5F, 1.5F, new ModOptionFloat.InGuiSettings("Marked Facing Text Scale", 1)),
 				new ModOptionColor("markerColor", ColorManager.WHITE.getARGB(), false, new ModOptionColor.InGuiSettings("Marker Color", true, false)),
 				new ModOptionInt("spacing", 65, 30, 150, new ModOptionInt.InGuiSettings("Spacing")),
+				new ModOptionInt("width", 300, 100, 300, new ModOptionInt.InGuiSettings("Width")),
 				new ModOptionColor("backgroundColor", ColorManager.BLACK_66.getARGB(), false, new ModOptionColor.InGuiSettings("Background Color", true, false)),
 				new ModOption("drawBorder", false, new InGuiSettings("Draw Border")),
 				new ModOptionColor(new ModOptionParent("drawBorder"), "borderColor", ColorManager.BLACK.getARGB(), false, new ModOptionColor.InGuiSettings("Border Color", true, false)),
@@ -33,7 +34,7 @@ public class Direction extends ModDraggable {
 
 	@Override
 	public int getWidth() {
-		return 300;
+		return castOptionValueIntoInt("width");
 	}
 
 	@Override
